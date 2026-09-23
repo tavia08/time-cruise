@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>시간탐험대 · 역사 탐험</title>
+  <style>
+:root{--ink:#17334b;--muted:#60798c;--navy:#184a78;--line:#d8e4ea;--paper:#fffdf8;--gold:#e8b84d;--shadow:0 18px 50px rgba(26,60,84,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Pretendard,"Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(180deg,#eefaff,#fff9ed 70%,#f5f1e6);min-height:100vh}button{font:inherit}.hidden{display:none!important}
+.topbar{height:70px;display:flex;align-items:center;gap:14px;padding:0 clamp(15px,5vw,70px);position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(15px);border-bottom:1px solid rgba(190,209,220,.8)}.brand{border:0;background:none;font-weight:950;font-size:20px;color:var(--ink);cursor:pointer}.brand span{margin-left:4px}.player-mini{margin-left:auto;display:flex;align-items:center;gap:9px;background:#eef7ff;border:1px solid #d9eaf5;padding:5px 11px 5px 6px;border-radius:999px;font-size:13px}.player-mini img{width:40px;height:40px;border-radius:50%;object-fit:contain;background:#fff7e9}.player-mini div{display:flex;flex-direction:column;line-height:1.2}.player-mini span{color:var(--muted);font-size:11px}
+.screen{display:none;padding:38px clamp(15px,5vw,78px) 80px;max-width:1520px;margin:0 auto}.screen.active{display:block}.home-screen{padding-top:25px}.eyebrow{letter-spacing:.13em;font-size:12px;font-weight:950;color:#4681ab}.section-title{text-align:center;max-width:780px;margin:10px auto 32px}.section-title h2,.dashboard-head h2{font-size:clamp(30px,4vw,47px);margin:7px 0 10px;letter-spacing:-.045em}.section-title p{color:var(--muted);line-height:1.65}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:22px}.head-actions{display:flex;gap:8px;flex-wrap:wrap}
+.primary{border:0;background:linear-gradient(135deg,#183f68,#2f74aa);color:#fff;padding:13px 20px;border-radius:16px;font-weight:900;cursor:pointer;box-shadow:0 9px 22px rgba(23,62,103,.22);transition:.18s}.primary:hover{transform:translateY(-1px)}.primary:disabled{opacity:.35;cursor:not-allowed;transform:none}.primary.big{padding:15px 25px;font-size:17px}.primary.huge{padding:18px 28px;font-size:18px}.ghost-btn,.soft-btn{border:1px solid #cbdae4;background:#fff;color:var(--ink);padding:9px 13px;border-radius:13px;cursor:pointer;font-weight:850}.soft-btn{background:#edf7ff;border-color:transparent}
+.title-visual-wrap{position:relative;border-radius:34px;overflow:hidden;box-shadow:var(--shadow);min-height:min(70vw,760px);background:#cceafb}.title-visual{width:100%;height:100%;min-height:min(70vw,760px);object-fit:cover;display:block}.title-overlay{position:absolute;left:4%;bottom:5%;width:min(540px,88%);background:rgba(255,253,245,.93);border:1px solid rgba(255,255,255,.8);box-shadow:0 18px 45px rgba(29,48,65,.24);backdrop-filter:blur(12px);padding:24px;border-radius:25px}.title-badge{display:inline-block;padding:7px 10px;background:#e6f4ff;border-radius:999px;color:#28638e;font-weight:850;font-size:12px}.title-overlay h1{font-size:clamp(30px,4vw,54px);margin:9px 0 7px;letter-spacing:-.05em}.title-overlay p{color:#516b7f;line-height:1.55;margin:0 0 17px}.feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:17px}.feature-row article{display:flex;flex-direction:column;gap:6px;background:#fff;padding:18px 20px;border-radius:18px;box-shadow:0 7px 20px rgba(30,60,85,.07)}.feature-row strong{font-size:17px}.feature-row span{color:var(--muted);font-size:13px}
+.character-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.character-card{background:#fff;border:3px solid transparent;border-radius:26px;overflow:hidden;cursor:pointer;box-shadow:0 10px 28px rgba(24,60,90,.09);transition:.2s}.character-card:hover{transform:translateY(-5px)}.character-card.selected{border-color:#2b6d9f;box-shadow:0 15px 34px rgba(43,109,159,.22)}.character-image{height:310px;background:linear-gradient(160deg,#e8f7ff,#fff0cf);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}.character-card:nth-child(2) .character-image{background:linear-gradient(160deg,#fff0f2,#f0fae8)}.character-card:nth-child(3) .character-image{background:linear-gradient(160deg,#eafcf4,#edf5ff)}.character-card:nth-child(4) .character-image{background:linear-gradient(160deg,#fff7dd,#f9eefd)}.character-image img{width:100%;height:100%;object-fit:contain;display:block}.character-info{padding:17px}.character-info h3{font-size:26px;margin:0 0 4px}.character-info b{color:#3471a0}.character-info p{color:var(--muted);line-height:1.5;min-height:46px;font-size:14px}.character-quote{background:#f3f8fb;padding:10px 12px;border-radius:13px;font-weight:800;font-size:13px}.center-actions{text-align:center;margin-top:27px}
+.status-board{display:grid;grid-template-columns:minmax(390px,520px) 1fr;gap:20px;background:#fff;border-radius:28px;padding:18px 22px;box-shadow:var(--shadow);border:1px solid #edf1f2}.avatar-status{display:flex;align-items:center;gap:18px}.avatar-frame{width:148px;height:148px;border-radius:27px;background:radial-gradient(circle at 50% 20%,#fff,#f6eedb);border:2px solid #eed9a9;overflow:hidden;flex:none}.avatar-frame img{width:100%;height:100%;object-fit:contain;transition:.3s}.avatar-copy{display:flex;flex-direction:column;gap:3px}.name-line{display:flex;align-items:center;gap:8px}.name-line strong{font-size:27px}.avatar-copy>span{color:var(--muted);font-size:13px}.rank-title{margin-top:9px;display:flex;flex-direction:column}.rank-title small{color:#8d7150;font-weight:800}.rank-title b{font-size:24px;color:#6e4e22}.preview-chip{padding:4px 7px;border-radius:999px;background:#ffefd1;color:#9b6410;font-weight:900;font-size:10px}.xp-box{display:flex;flex-direction:column;justify-content:center}.xp-label{display:flex;justify-content:space-between;font-weight:850}.xp-track{height:15px;background:#e5edf3;border-radius:999px;overflow:hidden;margin:9px 0}.xp-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#4fa980,#efbc4c);transition:.45s}.xp-box small{color:var(--muted)}.rank-message{margin-top:11px;font-weight:850;color:#3c6d8e}
+.growth-panel{margin-top:16px;background:#fff;border-radius:24px;padding:18px;box-shadow:0 9px 26px rgba(30,60,80,.08)}.growth-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:12px}.growth-head>div{display:flex;flex-direction:column}.growth-head b{font-size:18px}.growth-head span{color:var(--muted);font-size:12px;margin-top:2px}.growth-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.growth-step{border:2px solid transparent;background:#f5f6f4;border-radius:17px;padding:7px 7px 9px;cursor:pointer;text-align:center;transition:.18s;position:relative}.growth-step:hover{transform:translateY(-2px)}.growth-step img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:12px;background:#fff}.growth-step b{display:block;font-size:12px;margin-top:5px}.growth-step small{display:block;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.growth-step.future img{filter:grayscale(.8);opacity:.45}.growth-step.reached{background:#eef8f2}.growth-step.current{border-color:#e4b347;background:#fff8e5;box-shadow:0 6px 16px rgba(189,140,32,.15)}.growth-step.current:before{content:"현재";position:absolute;right:6px;top:6px;background:#e3ad34;color:white;font-size:9px;font-weight:900;padding:3px 6px;border-radius:999px}.prototype-note{margin-top:10px;color:#6f7d85;background:#f6fafc;padding:8px 11px;border-radius:10px;font-size:11px}.historical-note{font-size:12px;color:#6b7782;background:#fff8e8;border:1px solid #f0dfbb;padding:10px 14px;border-radius:12px;margin:12px 0 25px}
+.stage-map{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.stage-node{position:relative;min-height:295px;border:0;border-radius:25px;padding:20px;text-align:left;color:var(--ink);cursor:pointer;overflow:hidden;box-shadow:0 10px 27px rgba(25,60,80,.1);background:linear-gradient(160deg,#fff,#e9f7ff);transition:.2s}.stage-node:nth-child(2){background:linear-gradient(160deg,#fff,#edf7e9)}.stage-node:nth-child(3){background:linear-gradient(160deg,#fff,#fff1d6)}.stage-node:nth-child(4){background:linear-gradient(160deg,#fff,#f4eafd)}.stage-node:nth-child(5){background:linear-gradient(160deg,#fff,#ffeceb)}.stage-node:hover:not(.locked){transform:translateY(-4px)}.stage-node.locked{filter:grayscale(.65);opacity:.58;cursor:not-allowed}.stage-node.done:after{content:"✓ 완료";position:absolute;right:13px;top:13px;background:#3d936f;color:#fff;padding:5px 8px;border-radius:999px;font-weight:900;font-size:10px}.stage-num{font-size:11px;font-weight:950;color:#487693}.stage-icon{font-size:53px;margin:21px 0}.stage-node h3{font-size:21px;margin:0 0 9px}.stage-node p{color:#667d8e;line-height:1.45;font-size:13px}.stage-foot{position:absolute;left:20px;right:20px;bottom:18px;display:flex;justify-content:space-between;font-size:11px;font-weight:900}
+.quiz-shell{max-width:900px;margin:0 auto}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+.quiz-top div{display:flex;gap:13px;color:var(--muted)}
+.quiz-player{margin:0 0 16px;position:relative;z-index:2;pointer-events:none}
+.quiz-player-stack{display:flex;flex-direction:column;align-items:center;gap:12px}
+.quiz-player-stack .thinking-power{width:min(310px,96%)}
+.quiz-player-inner{display:flex;align-items:center;gap:10px;align-self:flex-start;background:#fff8e5;border:2px solid #e9cf93;border-radius:19px;padding:8px 14px 8px 8px;box-shadow:0 7px 20px rgba(74,57,28,.1)}
+.quiz-avatar-mini{width:58px;height:58px;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #eadfbd;display:grid;place-items:center;flex:0 0 58px}
+.quiz-avatar-mini img{width:100%;height:100%;object-fit:contain}
+.quiz-speaker-meta{display:flex;flex-direction:column;min-width:0}
+.quiz-player b{display:block;font-size:17px;line-height:1.1}
+.quiz-player span{font-size:12px;color:#856a40;line-height:1.25}
+.quiz-card{background:#fff;border-radius:30px;padding:clamp(28px,5vw,52px);box-shadow:var(--shadow);padding-top:34px}
+.question-type{display:inline-block;border-radius:999px;background:#e9f5ff;color:#2d6a94;padding:7px 11px;font-size:12px;font-weight:900}
+.quiz-card h2{font-size:clamp(25px,4vw,36px);line-height:1.42;margin:21px 0}
+.options{display:grid;gap:10px}
+.option{border:2px solid #dbe6ed;background:#fff;padding:15px 17px;border-radius:16px;text-align:left;cursor:pointer;font-weight:750}.option:hover{border-color:#79a8c9;background:#f6fbff}.option.correct{border-color:#4c9b76;background:#edf9f2}.option.wrong{border-color:#c66a70;background:#fff0f1}.option:disabled{cursor:default}.feedback{margin:17px 0;padding:17px;border-radius:16px;background:#f0f7fb;line-height:1.6}.feedback.good{background:#eef8f2}.feedback.bad{background:#fff4e9}
+.result-card{max-width:760px;margin:20px auto;background:#fff;padding:44px;border-radius:32px;text-align:center;box-shadow:var(--shadow)}.result-avatar{width:145px;height:145px;margin:-5px auto 7px;border-radius:50%;background:#fff5db;border:3px solid #efd79b;overflow:hidden}.result-avatar img{width:100%;height:100%;object-fit:contain}.result-card h2{font-size:40px;margin:9px 0}.result-card p{color:var(--muted);line-height:1.6}.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:22px 0}.result-stats div{background:#f3f8fb;border-radius:15px;padding:16px}.result-stats b{display:block;font-size:24px}.promotion{margin:18px 0;padding:19px;background:linear-gradient(135deg,#fff3c9,#fff9e8);border-radius:18px}
+.collection-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.history-card{min-height:195px;background:#fff;border-radius:18px;padding:17px;box-shadow:0 8px 22px rgba(30,60,80,.08);display:flex;flex-direction:column}.history-card.locked{background:#e9eef1;color:#87939c}.history-card .card-icon{font-size:36px}.history-card h3{margin:9px 0 5px}.history-card p{font-size:12px;line-height:1.45;color:#6c7d89}.card-kind{margin-top:auto;font-size:10px;font-weight:900;color:#4c81a8}.wrong-list{display:grid;gap:13px}.wrong-item{background:#fff;border-radius:18px;padding:18px;box-shadow:0 8px 20px rgba(25,55,80,.07)}.wrong-item b{display:block;margin-bottom:7px}.wrong-item p{color:var(--muted);margin:5px 0}.empty-state{text-align:center;background:#fff;padding:55px;border-radius:26px;color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(19,38,52,.63);display:grid;place-items:center;z-index:100;padding:20px;backdrop-filter:blur(8px)}.modal-card{width:min(650px,96vw);background:#fffdf8;border-radius:31px;padding:31px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.3)}.sparkles{font-size:15px;font-weight:950;color:#ad7617}.modal-card h2{font-size:34px;margin:8px 0 13px}.promotion-avatars{display:grid;grid-template-columns:1fr 40px 1fr;gap:9px;align-items:center}.promotion-avatars>div{background:#f6f1e5;border-radius:20px;padding:9px}.promotion-avatars img{width:100%;height:210px;object-fit:contain}.promotion-avatars span{display:block;font-weight:900}.promotion-avatars>b{font-size:31px;color:#d09a2e}.modal-card p{color:var(--muted)}.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:#173e67;color:#fff;padding:12px 17px;border-radius:999px;font-weight:850;opacity:0;pointer-events:none;transition:.25s;z-index:120}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1100px){.character-grid{grid-template-columns:repeat(2,1fr)}.stage-map{grid-template-columns:repeat(2,1fr)}.collection-grid{grid-template-columns:repeat(3,1fr)}.status-board{grid-template-columns:1fr}.growth-strip{grid-template-columns:repeat(3,1fr)}.feature-row{grid-template-columns:1fr}.title-visual-wrap{min-height:670px}.title-visual{min-height:670px}.title-overlay{left:3%;bottom:3%}}
+@media(max-width:700px){.topbar{padding:0 12px}.screen{padding:26px 12px 65px}.player-mini span{display:none}.dashboard-head{align-items:flex-start;flex-direction:column}.character-grid,.stage-map,.collection-grid{grid-template-columns:1fr}.character-image{height:290px}.avatar-status{align-items:flex-start}.avatar-frame{width:120px;height:120px}.growth-strip{grid-template-columns:repeat(2,1fr)}.growth-head{align-items:flex-start;flex-direction:column}.result-stats{grid-template-columns:1fr}.title-visual-wrap,.title-visual{min-height:620px}.title-overlay{width:94%;left:3%;bottom:2%;padding:18px}.title-overlay p{font-size:13px}.promotion-avatars img{height:145px}}
+
+
+/* v3: 그림 없는 시작 화면 */
+.home-screen-simple{padding-top:48px}
+.hero-simple{min-height:610px;display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center;padding:28px 0 38px}
+.hero-copy-simple{max-width:760px}
+.hero-copy-simple h1{font-size:clamp(58px,7.2vw,102px);line-height:.96;margin:16px 0 28px;letter-spacing:-.065em}
+.hero-copy-simple h1 em{font-style:normal;color:#b86d35}
+.hero-copy-simple p{font-size:19px;line-height:1.8;color:#526b7f;max-width:690px;margin:0 0 28px}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-actions span{font-size:13px;color:var(--muted);font-weight:750}
+.mission-board{position:relative;overflow:hidden;min-height:460px;border:1px solid #ead9b5;border-radius:36px;padding:42px;background:linear-gradient(145deg,#fffdf6,#f6ead0);box-shadow:var(--shadow)}
+.mission-board:before,.mission-board:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.mission-board:before{width:250px;height:250px;right:-80px;top:-100px;background:rgba(120,183,218,.16)}
+.mission-board:after{width:220px;height:220px;left:-100px;bottom:-110px;background:rgba(232,184,77,.16)}
+.mission-board>*{position:relative;z-index:1}
+.mission-seal{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;border:7px double #8a5c36;background:#fff8e9;color:#704522;font-family:serif;font-size:34px;font-weight:950;margin-bottom:26px;box-shadow:0 8px 20px rgba(100,65,40,.09)}
+.mission-board h2{font-size:34px;margin:0 0 12px;letter-spacing:-.04em}
+.mission-board p{color:#617383;line-height:1.7;margin:0 0 24px}
+.mission-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}.mission-tags span{padding:9px 13px;border-radius:999px;background:#fff;border:1px solid #e4d6bb;font-size:13px;font-weight:850;color:#496477}
+.mission-rule{border-top:1px dashed #d7c6a3;padding-top:20px;display:grid;gap:6px}.mission-rule b{color:#8d5d2f}.mission-rule span{font-size:14px;color:#657787;line-height:1.55}
+@media(max-width:1100px){.hero-simple{grid-template-columns:1fr;min-height:auto}.mission-board{min-height:360px}.home-screen-simple{padding-top:30px}}
+@media(max-width:700px){.hero-simple{gap:28px;padding-top:8px}.hero-copy-simple h1{font-size:54px}.hero-copy-simple p{font-size:16px}.mission-board{padding:28px;border-radius:26px}.mission-board h2{font-size:28px}.mission-seal{width:90px;height:90px;font-size:28px}.hero-actions .primary{width:100%}}
+
+/* 통합 v1 */
+body[data-era="goryeo"]{--navy:#2e746f;--gold:#d0a75a;background:linear-gradient(180deg,#eefbf8,#fff9ed 70%,#f2f1e9)}
+body[data-era="joseon"]{--navy:#184a78;--gold:#e8b84d}
+.subcopy{color:var(--muted);line-height:1.6;margin:6px 0 0}.save-note{display:inline-block;margin-top:18px;padding:9px 12px;border-radius:12px;background:#f1f7fb;color:#60798c;font-size:12px;font-weight:800}
+.profile-live{position:relative;z-index:1;display:grid;grid-template-columns:minmax(220px,260px) 1fr;gap:26px;align-items:start}.profile-live .avatar-composite{width:240px;max-width:100%;padding:12px;background:#fff;border-radius:26px;border:1px solid #ecd7ad;box-shadow:0 12px 28px rgba(24,58,90,.08);justify-self:center}.profile-live img{width:100%;height:auto;max-height:210px;object-fit:contain;background:none;border:none;border-radius:20px}.profile-live h2{margin:0 0 5px;font-size:31px}.profile-live p{margin:5px 0;color:#667d8e}.profile-stat-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.profile-stat{background:#fff;border:1px solid #e4d6bb;border-radius:13px;padding:9px 11px}.profile-stat b{display:block;font-size:18px}.profile-stat span{font-size:10px;color:#778791}.profile-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.era-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.era-card{border:0;text-align:left;background:#fff;border-radius:30px;padding:27px;box-shadow:var(--shadow);cursor:pointer;position:relative;overflow:hidden;min-height:330px;transition:.2s}.era-card:hover{transform:translateY(-4px)}.era-card.goryeo{background:linear-gradient(145deg,#ffffff,#e9f8f3)}.era-card.joseon{background:linear-gradient(145deg,#ffffff,#edf5ff)}.era-card .era-seal{width:78px;height:78px;display:grid;place-items:center;border-radius:50%;background:#fff;border:5px double #a48254;font-family:serif;font-weight:950;font-size:24px;margin-bottom:18px}.era-card h3{font-size:31px;margin:0 0 6px}.era-card p{color:#667d8e;line-height:1.6;max-width:620px}.era-progress{margin-top:24px}.era-progress-head{display:flex;justify-content:space-between;font-size:12px;font-weight:900}.era-progress-track{height:10px;border-radius:999px;background:#e3ecec;overflow:hidden;margin:7px 0}.era-progress-track i{display:block;height:100%;background:linear-gradient(90deg,#4fa980,#e0b04a)}.era-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.era-meta span{font-size:11px;font-weight:850;background:rgba(255,255,255,.72);padding:7px 9px;border-radius:999px}.era-action{position:absolute;right:24px;top:25px;font-weight:950;color:#3b7191}.global-summary{margin-top:20px;background:#fff;border-radius:22px;padding:18px 21px;box-shadow:0 8px 24px rgba(30,60,80,.07);display:flex;gap:22px;flex-wrap:wrap;align-items:center}.global-summary b{font-size:22px}.global-summary span{color:var(--muted);font-size:12px}.global-summary .summary-item{display:flex;flex-direction:column}.total-exp{margin-top:10px;padding-top:10px;border-top:1px dashed #d8e4ea;color:#6a7d8b;font-size:12px;font-weight:850}.map-bottom-actions{text-align:right;margin-top:20px}.danger-lite{border:1px solid #e0b8b8;background:#fff8f8;color:#a45a5a;padding:9px 12px;border-radius:12px;font-weight:850;cursor:pointer}
+.home-profile-placeholder{position:relative;z-index:1}.home-profile-placeholder h2{font-size:32px;margin:0 0 10px}.home-profile-placeholder p{line-height:1.7;color:#667d8e}
+@media(max-width:900px){.era-grid{grid-template-columns:1fr}.profile-live{grid-template-columns:minmax(150px,180px) 1fr;gap:18px}.profile-live .avatar-composite{width:165px}.profile-live img{max-height:145px}}
+@media(max-width:600px){.profile-live{grid-template-columns:1fr;text-align:center}.profile-live img{margin:auto}.profile-actions,.profile-stat-row{justify-content:center}.era-card{min-height:360px}}
+
+/* 6개 대단원 + 순차 해금 + 복습 모드 */
+.era-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.era-card{min-height:360px}.era-card .unit-no{position:absolute;left:22px;top:18px;font-size:11px;font-weight:950;color:#7690a0;letter-spacing:.08em}.era-card.era-locked{filter:saturate(.35);opacity:.72;cursor:not-allowed;background:linear-gradient(145deg,#f5f7f8,#edf0f2)}.era-card.era-complete{outline:2px solid rgba(50,145,100,.22)}.lock-help{margin-top:12px;padding:9px 10px;border-radius:12px;background:#eef1f3;color:#6c7a84;font-size:11px;font-weight:800;line-height:1.45}.teacher-preview-banner,.review-mode-banner{margin:0 0 16px;padding:12px 15px;border-radius:14px;background:#fff8dc;border:1px solid #ead189;color:#7a6323;font-weight:900;font-size:12px}.review-mode-banner{background:#edf9f2;border-color:#b9dfc7;color:#3f7654}.preview-tools{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:14px}.preview-tools small{color:#7f8f99}.hidden{display:none!important}
+body[data-era="ancient"]{--navy:#795233;--gold:#d1a05b;background:linear-gradient(180deg,#fbf5e9,#fffdf7 70%,#f5eee3)}
+body[data-era="northsouth"]{--navy:#6b487c;--gold:#d9a94f;background:linear-gradient(180deg,#f8f2fb,#fffdf7 70%,#f0e8f3)}
+body[data-era="goryeo"]{--navy:#2e746f;--gold:#d0a75a;background:linear-gradient(180deg,#eefbf8,#fff9ed 70%,#f2f1e9)}
+body[data-era="joseon"]{--navy:#184a78;--gold:#e8b84d}
+body[data-era="joseon_change"]{--navy:#805339;--gold:#d2a04d;background:linear-gradient(180deg,#fcf5ed,#fffaf3 70%,#f4ece2)}
+body[data-era="modern"]{--navy:#3c536f;--gold:#d7a94a;background:linear-gradient(180deg,#f0f5fb,#fffaf2 70%,#edf1f6)}
+@media(max-width:1100px){.era-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){.era-grid{grid-template-columns:1fr!important}.preview-tools{align-items:flex-end;flex-direction:column}}
+
+/* v6: 학습지 미션 + 4단계 성장 + 꾸미기 */
+.avatar-frame{position:relative}.avatar-composite{position:relative;display:inline-grid;place-items:center}.avatar-composite img{display:block}.equipped-layer{position:absolute;inset:0;pointer-events:none}.avatar-item{position:absolute;right:6px;bottom:6px;display:grid;place-items:center;min-width:44px;height:44px;padding:0 6px;border-radius:14px;background:rgba(255,248,229,.96);border:1px solid #e9d19a;font-size:28px;filter:drop-shadow(0 5px 7px rgba(0,0,0,.14));transform:none}.avatar-item.item-badge{right:6px;top:6px;bottom:auto;font-size:24px;min-width:38px;height:38px;border-radius:12px}.mini-composite{width:40px;height:40px}.mini-composite img{width:40px!important;height:40px!important}.mini-composite .avatar-item{min-width:18px;height:18px;font-size:12px;right:-2px;bottom:-2px;padding:0;border-radius:8px}.profile-live .avatar-item{right:10px;bottom:10px;font-size:30px;min-width:48px;height:48px}.profile-live .avatar-composite>img{width:100%}.mission-reward{margin-top:10px;padding:7px 10px;border-radius:12px;background:#fff7df;border:1px solid #f1dfad;font-size:12px;font-weight:850;color:#6e5621}.open-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(20px,4vw,38px);box-shadow:var(--shadow)}.open-card h2{font-size:clamp(24px,4vw,38px);line-height:1.35}.open-card textarea{width:100%;resize:vertical;border:2px solid #d6e4ee;border-radius:18px;padding:18px;font:inherit;font-size:16px;line-height:1.7;outline:none;background:#fbfdff;margin:16px 0}.open-card textarea:focus{border-color:#5290c1;box-shadow:0 0 0 4px rgba(82,144,193,.12)}.open-guide{margin:12px 0 18px;padding:18px;border-radius:18px;background:#eef9f1;border:1px solid #cfe9d6;line-height:1.7}.wardrobe-layout{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:22px;align-items:start}.wardrobe-preview{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:24px;text-align:center;position:sticky;top:92px}.wardrobe-avatar>img,.wardrobe-preview .avatar-composite>img{width:100%;max-width:280px}.wardrobe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}.item-card{border:1px solid var(--line);border-radius:20px;background:#fff;padding:18px;text-align:left;display:flex;flex-direction:column;gap:8px;min-height:160px;box-shadow:0 8px 25px rgba(24,58,90,.07)}.item-card>span{font-size:42px}.item-card b{font-size:16px}.item-card small{color:var(--muted);line-height:1.45}.item-card.locked{opacity:.48}.item-card.equipped{outline:3px solid #79aee0;background:#eef7ff}.item-card em{font-style:normal;font-size:12px;font-weight:900;color:#245b94}.growth-strip{grid-template-columns:repeat(4,minmax(120px,1fr))!important}.growth-step img{max-height:135px}.prototype-note{display:none}.era-card.era-locked .lock-help{display:block}.teacher-preview-banner{line-height:1.55}
+@media(max-width:850px){.wardrobe-layout{grid-template-columns:1fr}.wardrobe-preview{position:static}.avatar-item{font-size:38px}.growth-strip{grid-template-columns:repeat(2,1fr)!important}}
+
+/* v9: 실제 이미지형 꾸미기 아이템 */
+.item-art{display:block;object-fit:contain;background:transparent!important;border:0!important;border-radius:0!important}
+.avatar-item{background:rgba(255,250,239,.9);overflow:visible}
+.avatar-item .item-art{width:48px!important;height:48px!important;max-width:none!important;max-height:none!important;filter:drop-shadow(0 4px 5px rgba(0,0,0,.18))}
+.avatar-item.item-hand{right:-10px;bottom:6px;width:62px;height:62px;background:transparent;border:0}
+.avatar-item.item-hand .item-art{width:62px!important;height:62px!important}
+.avatar-item.item-badge{right:4px;top:4px;width:50px;height:50px;background:rgba(255,250,239,.92)}
+.avatar-item.item-badge .item-art{width:42px!important;height:42px!important}
+.profile-live .avatar-item.item-hand{right:-8px;bottom:12px;width:78px;height:78px}
+.profile-live .avatar-item.item-hand .item-art{width:78px!important;height:78px!important}
+.profile-live .avatar-item.item-badge{right:10px;top:10px;width:58px;height:58px}
+.profile-live .avatar-item.item-badge .item-art{width:50px!important;height:50px!important}
+.mini-composite .avatar-item{display:none}
+.mission-reward{display:flex;align-items:center;gap:9px}
+.reward-thumb{width:34px!important;height:34px!important;flex:none}
+.reward-promotion{display:flex!important;align-items:center;gap:14px}
+.promotion-item{width:64px!important;height:64px!important;flex:none}
+.item-card{align-items:flex-start}.wardrobe-item{width:88px!important;height:88px!important;align-self:center;margin-bottom:4px}.locked-item{font-size:42px;align-self:center}.item-card.equipped .wardrobe-item{filter:drop-shadow(0 7px 8px rgba(40,100,150,.22))}
+.wardrobe-preview .avatar-item.item-hand{width:88px;height:88px;right:-5px;bottom:8px;background:transparent;border:0}.wardrobe-preview .avatar-item.item-hand .item-art{width:88px!important;height:88px!important}.wardrobe-preview .avatar-item.item-badge{width:62px;height:62px}.wardrobe-preview .avatar-item.item-badge .item-art{width:54px!important;height:54px!important}
+@media(max-width:700px){.profile-live .avatar-item.item-hand{width:62px;height:62px}.profile-live .avatar-item.item-hand .item-art{width:62px!important;height:62px!important}.wardrobe-item{width:72px!important;height:72px!important}}
+
+/* v10: 부위별 다중 장착 */
+.equipped-layer{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.avatar-item{position:absolute;display:grid;place-items:center;background:transparent!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 5px 8px rgba(0,0,0,.18));padding:0!important;min-width:0!important;height:auto!important}
+.avatar-item .item-art{display:block;width:100%;height:100%;object-fit:contain;background:transparent!important;border:0!important}
+.avatar-item.item-hand{width:31%;height:31%;right:2%;bottom:4%;z-index:5}
+.avatar-item.item-badge{width:18%;height:18%;right:21%;top:31%;z-index:6}
+.avatar-item.item-side{width:27%;height:27%;left:1%;bottom:5%;z-index:4}
+.avatar-item.item-back{width:42%;height:42%;right:-8%;top:1%;z-index:1;opacity:.92}
+.avatar-composite>img{position:relative;z-index:3}
+.mini-composite .avatar-item.item-hand,.mini-composite .avatar-item.item-side{width:16px;height:16px}
+.mini-composite .avatar-item.item-badge{width:11px;height:11px;right:7px;top:12px}
+.mini-composite .avatar-item.item-back{width:20px;height:20px;right:-5px;top:-3px}
+.profile-live .avatar-item.item-hand{width:31%;height:31%;right:1%;bottom:2%}
+.profile-live .avatar-item.item-side{width:28%;height:28%;left:0;bottom:2%}
+.profile-live .avatar-item.item-badge{width:18%;height:18%;right:22%;top:31%}
+.profile-live .avatar-item.item-back{width:43%;height:43%;right:-7%;top:-1%}
+.wardrobe-preview .avatar-composite{overflow:visible}
+.wardrobe-preview .avatar-item.item-hand{width:32%;height:32%}
+.wardrobe-preview .avatar-item.item-side{width:29%;height:29%}
+.wardrobe-preview .avatar-item.item-badge{width:19%;height:19%}
+.wardrobe-preview .avatar-item.item-back{width:44%;height:44%}
+.slot-summary{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:4px}
+.slot-chip{background:#f4f6f7;border:1px dashed #cbd6dd;border-radius:15px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.slot-chip b{font-size:12px;color:#536d80}.slot-chip span{font-size:12px;color:#8a98a2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot-chip.filled{background:#eef8f2;border-style:solid;border-color:#b8ddc5}.slot-chip.filled span{color:#347152;font-weight:850}
+.slot-label{align-self:flex-start;background:#edf5fb;color:#3a698d;font-size:10px;font-weight:900;padding:4px 7px;border-radius:999px}
+.item-card.equipped{outline:3px solid #68a886;background:#eef8f2}
+.item-card .equip-hint{color:#7c8b95!important}
+@media(max-width:760px){.slot-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* v11: 의미 없는 3개 공용 아이템 슬롯 */
+.avatar-item.item-slot1{width:30%;height:30%;right:2%;bottom:3%;z-index:6}
+.avatar-item.item-slot2{width:28%;height:28%;left:1%;bottom:4%;z-index:5}
+.avatar-item.item-slot3{width:28%;height:28%;right:3%;top:2%;z-index:4}
+.mini-composite .avatar-item.item-slot1{width:15px;height:15px;right:-3px;bottom:-2px}
+.mini-composite .avatar-item.item-slot2{width:14px;height:14px;left:-3px;bottom:-2px}
+.mini-composite .avatar-item.item-slot3{width:13px;height:13px;right:-2px;top:-3px}
+.profile-live .avatar-item.item-slot1{width:30%;height:30%;right:1%;bottom:2%}
+.profile-live .avatar-item.item-slot2{width:28%;height:28%;left:0;bottom:2%}
+.profile-live .avatar-item.item-slot3{width:27%;height:27%;right:2%;top:1%}
+
+.slot-summary{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.slot-chip{border:1px solid #d2dde4;background:#f7fafc;cursor:pointer;text-align:left}
+.slot-chip small{font-size:10px;color:#93a0a9;margin-top:2px}
+.slot-chip.filled{background:#eef8f2;border-color:#b8ddc5}
+.slot-picker{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:8px;border-top:1px dashed #dce5ea}
+.slot-picker>span{font-size:11px;color:#6d7f8c;font-weight:850;margin-right:3px}
+.slot-pick{width:31px;height:31px;border-radius:10px;border:1px solid #cbd8e0;background:#f7fafc;color:#4d687c;font-weight:950;cursor:pointer}
+.slot-pick:hover{background:#eaf4fb}
+.slot-pick.active{background:#3479a7;color:#fff;border-color:#3479a7;box-shadow:0 4px 12px rgba(52,121,167,.18)}
+.item-card{cursor:default}
+.item-card.equipped{outline:2px solid #83b999;background:#f1faf4}
+@media(max-width:760px){.slot-summary{grid-template-columns:1fr!important}}
+
+/* v13: 6개 착용 슬롯 + 캐릭터 창 아이템 패널 */
+.avatar-item.item-slot1{width:24%;height:24%;right:1%;bottom:2%;z-index:8}
+.avatar-item.item-slot2{width:23%;height:23%;left:1%;bottom:2%;z-index:7}
+.avatar-item.item-slot3{width:21%;height:21%;right:2%;top:2%;z-index:6}
+.avatar-item.item-slot4{width:20%;height:20%;left:2%;top:3%;z-index:5}
+.avatar-item.item-slot5{width:19%;height:19%;right:24%;bottom:0;z-index:9}
+.avatar-item.item-slot6{width:18%;height:18%;left:25%;top:0;z-index:4}
+.mini-composite .avatar-item.item-slot4,.mini-composite .avatar-item.item-slot5,.mini-composite .avatar-item.item-slot6{display:none}
+
+.home-item-window{margin-top:16px;padding:12px;background:rgba(255,255,255,.72);border:1px solid #e5d7ba;border-radius:16px}
+.home-item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.home-item-head b{font-size:13px}.home-item-head span{font-size:10px;color:#7d8b94}
+.home-item-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.home-item-slot{min-width:0;border:1px dashed #cfd9df;background:#f8fbfc;border-radius:11px;padding:5px 4px;display:grid;grid-template-rows:auto 34px auto;place-items:center;gap:2px;cursor:pointer}
+.home-item-slot>span{font-size:9px;font-weight:950;color:#7190a4}
+.home-item-slot i{font-style:normal;color:#a7b4bc;font-size:20px}
+.home-item-slot small{width:100%;font-size:8px;color:#7d8d97;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.home-item-slot.filled{border-style:solid;border-color:#b8d8c4;background:#f0f9f3}
+.home-slot-art{width:32px!important;height:32px!important;object-fit:contain!important;background:transparent!important;border:0!important}
+.home-item-empty{font-size:11px;color:#82919a;padding:8px 0}
+
+.slot-summary{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.slot-chip{min-width:0;padding:9px 8px}
+.slot-chip b,.slot-chip span,.slot-chip small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot-picker{flex-wrap:wrap}.slot-pick{width:29px;height:29px}
+
+.bonus-challenge-btn,.bonus-earned{display:block;margin-top:8px;padding:7px 9px;border-radius:10px;font-size:11px;font-weight:900;text-align:center}
+.bonus-challenge-btn{background:#fff0c7;color:#855d12;border:1px solid #e8cc7f}
+.bonus-earned{background:#eaf8ef;color:#397554;border:1px solid #b9ddc7}
+.bonus-modal{position:fixed;inset:0;background:rgba(18,32,44,.58);z-index:120;display:grid;place-items:center;padding:18px}
+.bonus-modal.hidden{display:none}
+.bonus-card{position:relative;width:min(620px,96vw);background:#fff;border-radius:28px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+.bonus-card h2{font-size:28px;margin:8px 0}.bonus-card>p{font-size:20px;line-height:1.55;font-weight:850}
+.bonus-close{position:absolute;right:16px;top:13px;border:0;background:#eef3f6;border-radius:50%;width:34px;height:34px;font-size:22px;cursor:pointer}
+.bonus-options{display:grid;gap:9px;margin-top:18px}.bonus-options button{border:1px solid #d4e0e7;background:#fbfdfe;border-radius:14px;padding:13px;text-align:left;font-weight:800;cursor:pointer}
+.bonus-options button:hover{background:#edf6fb}.bonus-options button:disabled{cursor:default}
+.bonus-feedback{margin-top:15px;padding:14px;border-radius:14px;line-height:1.65}.bonus-feedback.hidden{display:none}
+.bonus-feedback.good{background:#eaf8ef;color:#316a4c}.bonus-feedback.bad{background:#fff2ef;color:#8a4e42}
+.bonus-promotion{background:#fff8dd!important}
+@media(max-width:900px){.home-item-grid{grid-template-columns:repeat(3,1fr)}.slot-summary{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:580px){.home-item-grid{grid-template-columns:repeat(3,1fr)}.slot-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+.home-item-slot{position:relative}
+.home-item-slot em{font-style:normal;font-size:8px;line-height:1;color:#fff;background:#3479a7;padding:2px 5px;border-radius:999px;position:absolute;right:4px;top:4px}
+.home-item-slot.visible-selected{border-color:#79ac8d;background:#eef8f2;box-shadow:0 0 0 2px rgba(121,172,141,.18) inset}
+.slot-guide{grid-column:1/-1;background:#fff8e8;border:1px solid #efddb3;color:#7a6330;padding:12px 14px;border-radius:14px;font-size:12px;line-height:1.6;margin-bottom:8px}
+.slot-chip.visible{box-shadow:0 0 0 2px rgba(52,121,167,.18) inset;border-color:#9fc0d9;background:#eef6fc}
+.slot-chip-actions{display:flex;gap:6px;margin-top:6px}
+.slot-action{flex:1;border:1px solid #c8d7e3;background:#f6fbfe;color:#4e6f87;border-radius:10px;padding:6px 8px;font-size:11px;font-weight:800;cursor:pointer}
+.slot-action:disabled{opacity:.45;cursor:default}
+.slot-action.active{background:#3479a7;color:#fff;border-color:#3479a7}
+.slot-action.ghost{background:#fff;color:#6b7d89}
+
+/* v16: 역사적 사고력 + 국보/보물 게임 등급 */
+.avatar-with-power{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+.thinking-power{width:min(250px,100%);background:linear-gradient(135deg,#21394d,#31596f);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:10px 12px;box-shadow:0 8px 20px rgba(20,49,67,.14)}
+.thinking-power-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.thinking-power-top span{font-size:11px;font-weight:900;letter-spacing:.03em;color:#dceaf1}
+.thinking-power-top strong{font-size:23px;line-height:1;font-weight:1000;color:#fff4bd}
+.thinking-power-bar{height:6px;margin-top:8px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden}
+.thinking-power-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#d9b653,#fff0a6)}
+.thinking-power-breakdown{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:9px;color:#c9d9e1}
+.grade-badge{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;padding:4px 7px;border-radius:999px;font-size:10px;line-height:1;font-weight:950;white-space:nowrap}
+.grade-treasure{background:#eef4f8;color:#3e647e;border:1px solid #c4d5df}
+.grade-national{background:#fff2c7;color:#85590d;border:1px solid #e7c86b;box-shadow:0 3px 9px rgba(180,135,28,.12)}
+.item-card .grade-badge{margin-top:2px}
+.profile-live .avatar-with-power{width:100%}
+.wardrobe-preview .thinking-power{margin-bottom:5px}
+@media(max-width:650px){
+  .thinking-power{width:min(220px,100%)}
+  .thinking-power-top strong{font-size:20px}
+}
+
+/* v17: 상단 미니 프로필은 사고력 패널 없이 아바타만 표시 */
+#player-mini .avatar-with-power.avatar-only{display:block;width:40px;flex:0 0 40px}
+#player-mini .avatar-with-power.avatar-only .avatar-composite{margin:0}
+
+/* v18: 꾸미기 창고 등급 배지 크기 정리 */
+.item-card .grade-badge{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:auto !important;
+  max-width:max-content !important;
+  font-size:11px !important;
+  line-height:1.2 !important;
+  font-weight:900 !important;
+  padding:5px 8px !important;
+  margin:4px 0 2px !important;
+  border-radius:999px !important;
+  letter-spacing:0 !important;
+  white-space:nowrap !important;
+}
+
+@media(max-width:700px){
+  .quiz-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .quiz-player-stack{align-items:stretch}
+  .quiz-player-stack .thinking-power{width:100%}
+  .quiz-player-inner{align-self:stretch}
+  .quiz-card{padding-top:28px}
+}
+
+/* v22: 꾸미기 창고 헤더 가독성 정리 */
+#screen-wardrobe .dashboard-head{align-items:center}
+#screen-wardrobe .dashboard-head>div{min-width:0;flex:1}
+#screen-wardrobe .dashboard-head h2{
+  font-size:clamp(26px,3.1vw,36px);
+  line-height:1.18;
+  margin:6px 0 8px;
+  letter-spacing:-.04em;
+  white-space:nowrap;
+}
+#screen-wardrobe .dashboard-head h2 small{
+  font-size:.62em;
+  font-weight:800;
+  color:#54728b;
+  letter-spacing:-.02em;
+}
+#screen-wardrobe .dashboard-head .subcopy{
+  margin:0;
+  font-size:14px;
+  line-height:1.55;
+}
+#screen-wardrobe .wardrobe-map-btn{
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:108px;
+  padding:10px 16px;
+  flex:0 0 auto;
+}
+@media(max-width:1100px){
+  #screen-wardrobe .dashboard-head h2{
+    white-space:normal;
+  }
+}
+@media(max-width:700px){
+  #screen-wardrobe .dashboard-head{
+    align-items:flex-start;
+  }
+  #screen-wardrobe .wardrobe-map-btn{
+    min-width:auto;
+  }
+}
+
+
+/* v23: 추가 도전 아이템 시스템 복원 */
+.bonus-challenge-btn,.bonus-earned{
+  width:100%;
+  box-sizing:border-box;
+  margin-top:10px;
+  padding:9px 10px;
+  border-radius:12px;
+  font-size:11px;
+  line-height:1.35;
+  font-weight:900;
+  text-align:center;
+}
+.bonus-challenge-btn{
+  display:block;
+  background:linear-gradient(135deg,#fff3ca,#ffe9a4);
+  color:#76510d;
+  border:1px solid #dfbd60;
+  box-shadow:0 4px 10px rgba(174,126,24,.12);
+  cursor:pointer;
+}
+.bonus-challenge-btn:hover{transform:translateY(-1px);background:#ffeab0}
+.bonus-earned{display:block;background:#eaf8ef;color:#397554;border:1px solid #b9ddc7}
+.bonus-reward-preview{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:#fff8e5;
+  border:1px solid #ead6a2;
+  border-radius:16px;
+  padding:12px;
+  margin:12px 0 17px;
+}
+.bonus-reward-preview .bonus-reward-art{width:70px!important;height:70px!important;object-fit:contain!important;flex:0 0 70px}
+.bonus-reward-preview>div{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+.bonus-reward-preview b{font-size:17px}
+.bonus-reward-preview small{font-size:11px;color:#6f7f8a}
+.bonus-options button.correct{border-color:#4c9b76;background:#edf9f2}
+.bonus-options button.wrong{border-color:#c66a70;background:#fff0f1}
+
+
+/* v24: 꾸미기 창고 제목/지도 버튼 한 줄 고정 */
+#screen-wardrobe .dashboard-head{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  align-items:center !important;
+  column-gap:22px !important;
+}
+#screen-wardrobe .dashboard-head>div{
+  min-width:0 !important;
+}
+#screen-wardrobe #wardrobe-title{
+  display:flex !important;
+  align-items:baseline !important;
+  gap:10px !important;
+  flex-wrap:nowrap !important;
+  white-space:nowrap !important;
+  font-size:clamp(25px,2.75vw,38px) !important;
+  line-height:1.15 !important;
+  letter-spacing:-.045em !important;
+  margin:6px 0 8px !important;
+}
+#screen-wardrobe #wardrobe-title small{
+  display:inline !important;
+  flex:0 0 auto !important;
+  white-space:nowrap !important;
+  font-size:.48em !important;
+  line-height:1 !important;
+  font-weight:800 !important;
+  color:#58758d !important;
+  letter-spacing:-.02em !important;
+}
+#screen-wardrobe .wardrobe-map-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:auto !important;
+  min-width:92px !important;
+  padding:10px 15px !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  flex-shrink:0 !important;
+  line-height:1 !important;
+}
+@media(max-width:980px){
+  #screen-wardrobe #wardrobe-title{
+    font-size:clamp(22px,3.6vw,31px) !important;
+    gap:7px !important;
+  }
+  #screen-wardrobe #wardrobe-title small{
+    font-size:.46em !important;
+  }
+}
+@media(max-width:720px){
+  #screen-wardrobe .dashboard-head{
+    grid-template-columns:1fr !important;
+    row-gap:12px !important;
+    align-items:start !important;
+  }
+  #screen-wardrobe #wardrobe-title{
+    white-space:normal !important;
+    flex-wrap:wrap !important;
+  }
+  #screen-wardrobe .wardrobe-map-btn{
+    justify-self:start !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <button class="brand" data-go="home" aria-label="첫 화면으로">🧭 <span>시간탐험대</span></button>
+    <button id="era-shortcut" class="ghost-btn hidden">대단원 선택</button>
+    <div id="player-mini" class="player-mini hidden"></div>
+  </header>
+
+  <main>
+    <section id="screen-home" class="screen active home-screen-simple">
+      <div class="hero-simple">
+        <div class="hero-copy-simple">
+          <span class="eyebrow">HISTORY ADVENTURE</span>
+          <h1>시간탐험대<br><em>즐기는 역사 수업</em></h1>
+          <div id="home-actions" class="hero-actions"></div>
+          <div class="save-note">💾 같은 기기와 브라우저에서는 진행 상황이 자동 저장됩니다.</div>
+        </div>
+        <div id="home-profile" class="mission-board"></div>
+      </div>
+      <div class="feature-row">
+        <article><strong>🧑‍🚀 캐릭터는 계속 유지</strong><span>희철·미영·성규·윤서 중 처음 선택한 캐릭터로 여러 시대를 여행</span></article>
+        <article><strong>👘 4단계 성장 + 꾸미기</strong><span>아바타는 4단계로 성장하고, 미션마다 시대 아이템을 수집</span></article>
+        <article><strong>🔓 순차 대단원 해금</strong><span>앞 대단원을 완료해야 다음 대단원이 열리고, 완료한 미션은 다시 복습</span></article>
+      </div>
+    </section>
+
+    <section id="screen-character" class="screen">
+      <div class="section-title">
+        <span class="eyebrow">CHARACTER SELECT</span>
+        <h2>나의 캐릭터를 선택하세요</h2>
+        <p>처음 선택한 캐릭터는 6개의 시대를 탐험하는 동안 계속 유지됩니다. 나중에 바꾸더라도 시대별 학습 기록은 그대로 남습니다.</p>
+      </div>
+      <div id="character-grid" class="character-grid"></div>
+      <div class="center-actions">
+        <button id="start-profile-btn" class="primary big" disabled>이 캐릭터로 시작하기 →</button>
+        <button id="cancel-character-btn" class="ghost-btn hidden">취소</button>
+      </div>
+    </section>
+
+    <section id="screen-eras" class="screen">
+      <div class="dashboard-head">
+        <div><span class="eyebrow">TIME MAP</span><h2>탐험할 대단원을 선택하세요</h2><p class="subcopy">학습지 주제 하나가 앱의 미션 하나입니다. 현재는 고려까지 완성되어 있습니다.</p></div>
+        <button id="change-character-btn" class="ghost-btn">내 캐릭터 바꾸기</button>
+      </div>
+      <div id="teacher-preview-banner" class="teacher-preview-banner hidden">👩‍🏫 교사용 미리보기 중입니다. 잠긴 시대도 확인할 수 있지만 기록은 저장되지 않습니다.</div>
+      <div id="era-grid" class="era-grid"></div>
+      <div class="preview-tools"><button id="teacher-preview-btn" class="ghost-btn">교사용 전체 시대 미리보기</button><small>프로토타입 확인용 기능입니다. 학생용 최종판에서는 숨길 수 있습니다.</small></div>
+      <div class="global-summary" id="global-summary"></div>
+    </section>
+
+    <section id="screen-map" class="screen">
+      <div class="dashboard-head">
+        <div><span id="chapter-label" class="eyebrow"></span><h2 id="chapter-title"></h2><p id="chapter-desc" class="subcopy"></p></div>
+        <div class="head-actions">
+          <button class="soft-btn" data-go="eras">🧭 다른 시대</button>
+          <button class="soft-btn" data-go="wardrobe">🎒 꾸미기 <b id="item-count">0</b></button><button class="soft-btn" data-go="collection">🎴 역사 도감 <b id="card-count">0</b></button>
+          <button class="soft-btn" data-go="wrong">📜 오답 두루마리 <b id="wrong-count">0</b></button>
+        </div>
+      </div>
+
+      <div class="status-board">
+        <div class="avatar-status">
+          <div class="avatar-frame"><img id="status-avatar" src="" alt="현재 지위 아바타" /></div>
+          <div class="avatar-copy">
+            <div class="name-line"><strong id="status-name"></strong><span id="preview-chip" class="preview-chip hidden">미리보기</span></div>
+            <span id="status-role"></span>
+            <div class="rank-title"><small>현재 지위</small><b id="rank-name"></b></div>
+          </div>
+        </div>
+        <div class="xp-box">
+          <div class="xp-label"><span>이 시대 경험치</span><b id="xp-text"></b></div>
+          <div class="xp-track"><i id="xp-fill"></i></div>
+          <small id="next-rank-text"></small>
+          <div class="rank-message" id="rank-message"></div>
+          <div id="total-exp" class="total-exp"></div>
+        </div>
+      </div>
+
+      <div class="growth-panel">
+        <div class="growth-head">
+          <div><b>👘 이 시대의 성장 모습</b><span>아바타는 4단계로 성장하고 미션 아이템으로 개성을 더할 수 있습니다.</span></div>
+          <button id="clear-preview" class="ghost-btn hidden">실제 진행으로 돌아가기</button>
+        </div>
+        <div id="growth-strip" class="growth-strip"></div>
+        <div class="prototype-note">체험용: 성장 이미지를 눌러 각 단계 모습을 미리 볼 수 있습니다. 학생용 최종판에서는 이 기능을 숨길 수 있습니다.</div>
+      </div>
+
+      <div id="review-mode-banner" class="review-mode-banner hidden"></div>
+      <div id="historical-note" class="historical-note"></div>
+      <div id="stage-map" class="stage-map"></div>
+      <div class="map-bottom-actions"><button id="reset-era-btn" class="danger-lite">현재 시대 기록만 초기화</button></div>
+    </section>
+
+    <section id="screen-quiz" class="screen">
+      <div class="quiz-shell">
+        <div class="quiz-top"><button class="ghost-btn" data-go="map">← 지도</button><div><span id="quiz-stage-label"></span><b id="quiz-progress"></b></div></div>
+        <div class="quiz-player" id="quiz-player"></div>
+        <div class="quiz-card">
+          <div id="question-type" class="question-type"></div>
+          <h2 id="question-text"></h2>
+          <div id="options" class="options"></div>
+          <div id="feedback" class="feedback hidden"></div>
+          <button id="next-question" class="primary hidden">다음 문제 →</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="screen-open" class="screen">
+      <div class="quiz-shell">
+        <div class="quiz-top"><button class="ghost-btn" data-go="map">← 지도</button><div><span id="open-stage-label"></span><b>FINAL QUESTION</b></div></div>
+        <div class="open-card">
+          <span class="question-type">✍️ 나의 생각 쓰기</span>
+          <h2 id="open-question-text"></h2>
+          <p class="subcopy">정답 하나를 찾는 문제가 아닙니다. 학습지에서 배운 내용을 근거로 자신의 생각을 한 문장 이상 적어 보세요.</p>
+          <textarea id="open-answer" rows="7" placeholder="여기에 자신의 생각과 근거를 적어 보세요."></textarea>
+          <div id="open-guide" class="open-guide hidden"><b>생각을 점검해 보세요</b><p><strong>핵심 요소:</strong> <span id="open-core"></span></p><p><strong>예시 답안:</strong> <span id="open-sample"></span></p></div>
+          <button id="open-save" class="primary big">답안 저장하고 미션 완료 →</button>
+        </div>
+      </div>
+    </section>
+    <section id="screen-stage-result" class="screen">
+      <div class="result-card">
+        <div class="result-avatar"><img id="result-avatar" src="" alt="현재 아바타"></div>
+        <span class="eyebrow">STAGE RESULT</span>
+        <h2 id="result-title"></h2><p id="result-summary"></p>
+        <div id="result-stats" class="result-stats"></div><div id="promotion-area"></div>
+        <button id="next-era-btn" class="primary big hidden">다음 시대 탐험하기 →</button>
+        <button class="ghost-btn big" data-go="map">지도 계속 탐험하기 →</button>
+      </div>
+    </section>
+
+
+    <section id="screen-wardrobe" class="screen">
+      <div class="dashboard-head"><div><span class="eyebrow">AVATAR CUSTOM</span><h2 id="wardrobe-title">꾸미기 창고</h2><p class="subcopy">미션에서 얻은 시대 아이템을 눌러 장착하거나 해제할 수 있습니다.</p></div><button class="ghost-btn wardrobe-map-btn" data-go="map">← 지도</button></div>
+      <div class="wardrobe-layout"><div id="wardrobe-avatar" class="wardrobe-preview"></div><div id="wardrobe-grid" class="wardrobe-grid"></div></div>
+    </section>
+    <section id="screen-collection" class="screen">
+      <div class="dashboard-head"><div><span class="eyebrow">HISTORY COLLECTION</span><h2 id="collection-title">나의 역사 도감</h2></div><button class="ghost-btn" data-go="map">← 지도</button></div>
+      <div id="collection-grid" class="collection-grid"></div>
+    </section>
+
+    <section id="screen-wrong" class="screen">
+      <div class="dashboard-head"><div><span class="eyebrow">RETRY SCROLL</span><h2>오답 두루마리</h2></div><button class="ghost-btn" data-go="map">← 지도</button></div>
+      <div id="wrong-list" class="wrong-list"></div>
+    </section>
+  </main>
+
+  <div id="promotion-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="sparkles">✨ 지위 상승! ✨</div>
+      <h2 id="promotion-title"></h2>
+      <div class="promotion-avatars"><div><img id="promotion-before" src=""><span id="promotion-before-name"></span></div><b>→</b><div><img id="promotion-after" src=""><span id="promotion-after-name"></span></div></div>
+      <p>새로운 복장과 역할이 열렸습니다.</p>
+      <button id="promotion-close" class="primary big">새 모습으로 계속하기</button>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+</div>
+<script>
+
+window.addEventListener('error',function(e){
+  const box=document.querySelector('#home-profile');
+  if(box && !box.innerHTML.trim()){
+    box.innerHTML='<div class="home-profile-placeholder"><div class="mission-seal">!</div><h2>앱 실행 오류</h2><p>이 파일을 다시 열거나 브라우저를 새로고침해 주세요.</p></div>';
+  }
+});
+
+const characters = [{"id": "heecheol", "name": "희철", "role": "선생님", "tag": "역사 가이드형", "desc": "핵심 개념을 짚어 주는 든든한 역사 가이드", "quote": "역사의 흐름을 함께 찾아볼까요?"}, {"id": "miyoung", "name": "미영", "role": "선생님", "tag": "역사 연구자형", "desc": "사건의 연결고리를 찾아 주는 친절한 역사 연구원", "quote": "사건에는 언제나 이유가 있어요."}, {"id": "seonggyu", "name": "성규", "role": "학생", "tag": "도전형 탐험가", "desc": "문제를 풀며 새로운 시대를 개척하는 탐험가", "quote": "다음 시대에는 어떤 일이 기다리고 있을까?"}, {"id": "yunseo", "name": "윤서", "role": "학생", "tag": "탐구형 탐험가", "desc": "역사의 단서를 모아 숨겨진 이야기를 밝히는 탐구자", "quote": "작은 단서 하나도 놓치지 않을 거야!"}];
+const ERA_ORDER=['ancient','northsouth','goryeo','joseon','joseon_change','modern'];
+
+const STANDARD_REWARD_STAGE_IDS={
+  ancient:[1,3,6],
+  northsouth:[1,2,4],
+  goryeo:[1,3,6],
+  joseon:[1,4,8]
+};
+function isStandardRewardStage(eraId,stageId){
+  return (STANDARD_REWARD_STAGE_IDS[eraId]||[]).includes(stageId);
+}
+
+/* 선택 보너스 문제: 정규 미션에서 지급하지 않는 아이템용 */
+const BONUS_CHALLENGES={
+  'ancient:2':{q:'고조선의 8조법을 통해 알 수 있는 사회 모습으로 가장 적절한 것은?',opts:['사유 재산과 신분 차이가 존재했다','모든 사람이 같은 신분이었다','불교가 국가 운영의 중심이었다','과거 시험으로 관리를 선발했다'],a:0,explain:'8조법은 생명과 재산을 보호하고 노비가 존재했던 사회 모습을 보여 줍니다.'},
+  'ancient:4':{q:'신라가 한강 유역을 차지하면서 얻은 중요한 이점은?',opts:['중국과 직접 교류하기 유리해졌다','수도를 평양으로 옮길 수 있었다','가야 전 지역을 즉시 통합했다','고구려와 전쟁을 완전히 끝냈다'],a:0,explain:'한강 유역 확보는 중국과 직접 교류할 수 있는 교통로 확보와 연결됩니다.'},
+  'ancient:5':{q:'삼국이 불교를 받아들인 정치적 목적과 가장 가까운 것은?',opts:['왕권 강화와 사상 통합','농경의 중단','지방 세력의 독립 확대','철기 사용 금지'],a:0,explain:'삼국은 불교를 왕권을 뒷받침하고 백성의 사상을 통합하는 데 활용했습니다.'},
+
+  'northsouth:3':{q:'신라 말 지방에서 성장하며 독자적인 군사력과 경제력을 갖춘 세력을 무엇이라 하나요?',opts:['호족','문벌 귀족','권문세족','훈구'],a:0,explain:'신라 말에는 지방의 호족이 성장하여 중앙 정부의 통제력이 약화되었습니다.'},
+
+  'goryeo:2':{q:'고려의 과거와 음서가 함께 운영되었다는 사실이 보여 주는 특징은?',opts:['능력 선발과 신분 특권이 함께 존재했다','모든 관리가 시험만으로 선발되었다','농민만 관리가 될 수 있었다','관리 선발 제도가 없었다'],a:0,explain:'과거는 시험 선발, 음서는 고위 관리 자손에게 주어진 특혜라는 차이가 있습니다.'},
+  'goryeo:4':{q:'거란의 1차 침입 때 외교 담판으로 강동 6주를 확보한 인물은?',opts:['서희','강감찬','윤관','김윤후'],a:0,explain:'서희는 거란의 침입 목적을 파악하고 외교 담판으로 강동 6주를 확보했습니다.'},
+  'goryeo:5':{q:'공민왕이 권문세족에게 빼앗긴 토지와 노비 문제를 바로잡기 위해 설치한 기구는?',opts:['전민변정도감','교정도감','정방','도병마사'],a:0,explain:'전민변정도감은 권문세족의 불법 토지와 노비 문제를 바로잡기 위한 개혁 기구였습니다.'},
+
+  'joseon:2':{q:'조선의 3사 가운데 관리의 비리를 감찰한 기관은?',opts:['사헌부','사간원','홍문관','승정원'],a:0,explain:'사헌부는 관리 감찰을 담당했습니다. 사간원은 간쟁, 홍문관은 자문 기능을 맡았습니다.'},
+  'joseon:3':{q:'세종 때 여진에 대한 강경책의 대표 사례는?',opts:['4군 6진 개척','3포 개항','통신사 파견','사대 관계 수립'],a:0,explain:'세종 때 압록강과 두만강 유역에 4군 6진을 개척하여 북방 영토를 안정시켰습니다.'},
+  'joseon:5':{q:'조선 최초의 서원으로 주세붕이 세운 곳은?',opts:['백운동서원','성균관','향교','4부 학당'],a:0,explain:'주세붕이 세운 백운동서원은 이후 이황의 건의로 소수서원이라는 사액을 받았습니다.'},
+  'joseon:6':{q:'우리나라 실정에 맞는 농사법을 정리하여 세종 때 편찬한 책은?',opts:['농사직설','향약집성방','국조오례의','동국통감'],a:0,explain:'농사직설은 각 지역 농민의 경험을 수집하여 우리 풍토에 맞는 농사법을 정리한 책입니다.'},
+  'joseon:7':{q:'임진왜란 때 이순신 수군의 승리가 가져온 효과로 가장 적절한 것은?',opts:['일본군의 해상 보급로를 차단했다','명군의 참전을 막았다','전쟁 직후 청과 군신 관계를 맺었다','일본의 조선 침략을 하루 만에 끝냈다'],a:0,explain:'수군의 승리는 전라도 곡창 지대를 지키고 일본군의 해상 보급로를 차단하는 데 크게 기여했습니다.'}
+};
+function bonusKey(eraId,stageId){return `${eraId}:${stageId}`}
+function hasBonusChallenge(eraId,stageId){return !!BONUS_CHALLENGES[bonusKey(eraId,stageId)]}
+
+const ERAS={"ancient": {"id": "ancient", "name": "1. 선사 문화와 고대 국가", "seal": "고대", "chapter": "1. 선사 문화와 고대 국가", "title": "고대 국가의 탄생을 따라가라", "desc": "학습지 주제 1~6을 차례로 탐험합니다.", "note": "※ 학습지 한 주제가 앱의 미션 하나입니다. 아바타는 4단계로 성장하고, 성장하지 않는 미션에서도 시대 아이템을 획득합니다.", "ranks": [{"name": "고대 탐험 새내기", "note": "선사 시대부터 탐험을 시작합니다."}, {"name": "고대 문화 학습자", "note": "고조선과 여러 나라의 특징을 연결합니다."}, {"name": "삼국 시대 기록관", "note": "삼국의 성장과 경쟁을 분석합니다."}, {"name": "고대 국가 자문관", "note": "고대 국가와 통일 전쟁까지 탐험을 완성했습니다."}], "stages": [{"id": 1, "icon": "🪨", "title": "선사 문화의 전개, 청동기 문화", "subtitle": "학습지 주제 1", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "구석기 시대에 사용한 대표적인 석기는 무엇인가요?", "opts": ["간석기", "뗀석기", "철제 농기구", "청동 거울"], "a": 1, "explain": "구석기 시대에는 돌을 깨뜨리거나 떼어 만든 뗀석기를 사용했습니다.", "card": {"name": "뗀석기", "kind": "핵심 개념", "icon": "🪨", "desc": "구석기 시대에는 돌을 깨뜨리거나 떼어 만든 뗀석기를 사용했습니다."}}, {"type": "사실 질문", "q": "신석기 시대에 정착 생활이 확대된 가장 중요한 변화는 무엇인가요?", "opts": ["농경과 목축의 시작", "과거제 실시", "철제 무기 사용", "화폐 사용"], "a": 0, "explain": "신석기 시대에는 농경과 목축이 시작되면서 움집을 짓고 정착 생활을 하였습니다.", "card": {"name": "농경의 시작", "kind": "핵심 개념", "icon": "🌾", "desc": "신석기 시대에는 농경과 목축이 시작되면서 움집을 짓고 정착 생활을 하였습니다."}}, {"type": "사실 질문", "q": "청동기 시대 지배층의 무덤으로 볼 수 있는 것은 무엇인가요?", "opts": ["고인돌", "굴식 돌방무덤", "벽돌무덤", "돌무지덧널무덤"], "a": 0, "explain": "고인돌은 많은 노동력을 동원할 수 있었던 청동기 시대 지배층의 무덤입니다.", "card": {"name": "고인돌", "kind": "핵심 개념", "icon": "🪦", "desc": "고인돌은 많은 노동력을 동원할 수 있었던 청동기 시대 지배층의 무덤입니다."}}, {"type": "개념 질문", "q": "청동기 시대에 계급이 발생한 배경으로 가장 적절한 것은?", "opts": ["생산량 증가와 사유 재산의 발생", "모든 재산의 공동 소유", "이동 생활의 확대", "농경의 완전한 중단"], "a": 0, "explain": "농경이 본격화되어 생산량과 사유 재산이 늘면서 빈부 격차가 커지고 계급이 발생했습니다.", "card": {"name": "계급의 발생", "kind": "핵심 개념", "icon": "⚖️", "desc": "농경이 본격화되어 생산량과 사유 재산이 늘면서 빈부 격차가 커지고 계급이 발생했습니다."}}], "open": {"q": "청동기 시대에 농경의 발달이 계급의 발생으로 이어진 과정을 자신의 말로 설명해 보세요.", "core": ["농경 발달", "생산량 증가", "사유 재산", "빈부 격차와 계급"], "sample": "농경이 발달하면서 생산량과 사유 재산이 늘었고, 분배 과정에서 빈부 격차가 커지면서 지배층과 피지배층이 나뉘어 계급이 발생하였다."}, "reward": {"id": "ancient_1", "image": "assets/asset_001.png", "name": "반달돌칼", "icon": "🪃", "slot": "item", "desc": "청동기 시대 농경 생활과 관련된 반달돌칼"}}, {"id": 2, "icon": "⚖️", "title": "고조선 및 여러 나라의 성장", "subtitle": "학습지 주제 2", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "단군왕검이라는 명칭을 통해 알 수 있는 고조선 사회의 특징은?", "opts": ["제정일치 사회", "정교 분리 사회", "불교 중심 사회", "과거제 사회"], "a": 0, "explain": "단군은 제사장, 왕검은 정치적 지배자를 뜻하므로 제정일치 사회였음을 알 수 있습니다.", "card": {"name": "단군왕검", "kind": "핵심 개념", "icon": "👑", "desc": "단군은 제사장, 왕검은 정치적 지배자를 뜻하므로 제정일치 사회였음을 알 수 있습니다."}}, {"type": "개념 질문", "q": "고조선의 8조법을 통해 알 수 있는 사실로 가장 적절한 것은?", "opts": ["사유 재산과 신분제가 존재했다", "모든 사람이 같은 신분이었다", "불교가 국교였다", "왕이 존재하지 않았다"], "a": 0, "explain": "8조법을 통해 생명과 재산을 보호하고 노비가 존재한 사회였음을 알 수 있습니다.", "card": {"name": "8조법", "kind": "핵심 개념", "icon": "📜", "desc": "8조법을 통해 생명과 재산을 보호하고 노비가 존재한 사회였음을 알 수 있습니다."}}, {"type": "사실 질문", "q": "고구려의 제천 행사는 무엇인가요?", "opts": ["영고", "동맹", "무천", "팔관회"], "a": 1, "explain": "고구려에서는 10월에 동맹이라는 제천 행사를 열었습니다.", "card": {"name": "동맹", "kind": "핵심 개념", "icon": "🔥", "desc": "고구려에서는 10월에 동맹이라는 제천 행사를 열었습니다."}}, {"type": "사실 질문", "q": "삼한에서 종교를 주관한 제사장을 무엇이라 불렀나요?", "opts": ["천군", "마가", "대대로", "상대등"], "a": 0, "explain": "삼한에서는 천군이 제사를 주관했고 소도라는 신성 지역을 다스렸습니다.", "card": {"name": "천군과 소도", "kind": "핵심 개념", "icon": "⛩️", "desc": "삼한에서는 천군이 제사를 주관했고 소도라는 신성 지역을 다스렸습니다."}}], "open": {"q": "고조선처럼 사회 구성원이 많아지고 생활이 복잡해질수록 왜 법이 필요해졌을까요?", "core": ["사회 질서 유지", "갈등 해결", "생명과 재산 보호"], "sample": "사람이 많아지면 재산이나 생활을 둘러싼 갈등이 늘 수 있으므로, 공통된 규칙을 정해 질서를 유지하고 사람의 생명과 재산을 보호할 필요가 있었기 때문이다."}, "reward": {"id": "ancient_2", "image": "assets/asset_002.png", "name": "비파형 동검", "icon": "🗡️", "slot": "item", "desc": "고조선과 관련된 대표 청동 무기 비파형 동검"}}, {"id": 3, "icon": "🏯", "title": "삼국과 가야의 성장", "subtitle": "학습지 주제 3", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "고구려 소수림왕의 체제 정비에 해당하지 않는 것은?", "opts": ["불교 수용", "태학 설립", "율령 반포", "훈민정음 창제"], "a": 3, "explain": "소수림왕은 불교를 받아들이고 태학을 세우며 율령을 반포했습니다.", "card": {"name": "소수림왕의 개혁", "kind": "핵심 개념", "icon": "📚", "desc": "소수림왕은 불교를 받아들이고 태학을 세우며 율령을 반포했습니다."}}, {"type": "사실 질문", "q": "4세기 백제의 전성기를 이끈 왕은 누구인가요?", "opts": ["고이왕", "근초고왕", "무령왕", "성왕"], "a": 1, "explain": "근초고왕은 영토를 확장하고 중국·가야·왜와 교류하며 백제의 전성기를 이끌었습니다.", "card": {"name": "근초고왕", "kind": "핵심 개념", "icon": "👑", "desc": "근초고왕은 영토를 확장하고 중국·가야·왜와 교류하며 백제의 전성기를 이끌었습니다."}}, {"type": "개념 질문", "q": "신라 내물왕 때 왕권이 강해졌음을 보여 주는 변화는?", "opts": ["김씨 왕위 세습과 마립간 사용", "박·석·김 세 성씨의 순환 왕위", "왕호를 거서간으로 변경", "골품제 폐지"], "a": 0, "explain": "내물왕 때 김씨 왕위 세습이 확립되고 왕호가 마립간으로 바뀌었습니다.", "card": {"name": "내물왕", "kind": "핵심 개념", "icon": "🛡️", "desc": "내물왕 때 김씨 왕위 세습이 확립되고 왕호가 마립간으로 바뀌었습니다."}}, {"type": "사실 질문", "q": "초기 가야 연맹을 이끈 나라는 어디인가요?", "opts": ["대가야", "금관가야", "동예", "옥저"], "a": 1, "explain": "김해 지역의 금관가야가 풍부한 철과 해상 교역을 바탕으로 초기 가야 연맹을 이끌었습니다.", "card": {"name": "금관가야", "kind": "핵심 개념", "icon": "⚒️", "desc": "김해 지역의 금관가야가 풍부한 철과 해상 교역을 바탕으로 초기 가야 연맹을 이끌었습니다."}}], "open": {"q": "신라가 고구려의 도움을 받아 왜와 가야의 침입을 막은 것은 약한 모습일까요, 상황에 맞는 현명한 선택일까요? 근거와 함께 써 보세요.", "core": ["고구려의 군사 지원", "신라의 위기", "도움의 결과"], "sample": "예를 들어 현명한 선택이라고 볼 수 있다. 당시 신라는 왜와 가야의 침입으로 위기에 있었고, 고구려의 군사 지원을 이용해 침입을 막아 나라를 유지할 수 있었기 때문이다."}, "reward": {"id": "ancient_3", "image": "assets/asset_003.png", "name": "호우명 그릇", "icon": "🍶", "slot": "item", "desc": "신라와 고구려의 관계를 보여 주는 호우명 그릇"}}, {"id": 4, "icon": "🗺️", "title": "삼국의 경쟁과 발전", "subtitle": "학습지 주제 4", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "장수왕이 남진 정책을 추진하기 위해 수도를 옮긴 곳은?", "opts": ["국내성", "평양", "웅진", "사비"], "a": 1, "explain": "장수왕은 수도를 평양으로 옮기고 남진 정책을 추진했습니다.", "card": {"name": "평양 천도", "kind": "핵심 개념", "icon": "🏙️", "desc": "장수왕은 수도를 평양으로 옮기고 남진 정책을 추진했습니다."}}, {"type": "사실 질문", "q": "장수왕의 공격으로 한성이 함락된 뒤 백제가 옮긴 수도는?", "opts": ["웅진", "사비", "경주", "서경"], "a": 0, "explain": "백제는 한성이 함락된 뒤 방어에 유리한 웅진으로 수도를 옮겼습니다.", "card": {"name": "웅진 천도", "kind": "핵심 개념", "icon": "🏞️", "desc": "백제는 한성이 함락된 뒤 방어에 유리한 웅진으로 수도를 옮겼습니다."}}, {"type": "사실 질문", "q": "신라 법흥왕의 정책에 해당하는 것은?", "opts": ["불교 공인과 율령 반포", "9주 5소경 설치", "독서삼품과 실시", "청해진 설치"], "a": 0, "explain": "법흥왕은 이차돈의 순교를 계기로 불교를 공인하고 율령을 반포했습니다.", "card": {"name": "법흥왕", "kind": "핵심 개념", "icon": "🪷", "desc": "법흥왕은 이차돈의 순교를 계기로 불교를 공인하고 율령을 반포했습니다."}}, {"type": "개념 질문", "q": "진흥왕이 한강 유역을 차지한 것이 중요한 까닭은?", "opts": ["중국과 직접 교류하기 유리해졌기 때문에", "농사가 불가능해졌기 때문에", "수도를 일본으로 옮길 수 있어서", "고구려와 동맹이 자동으로 맺어져서"], "a": 0, "explain": "한강 유역을 차지하면서 신라는 중국과 직접 교류할 수 있는 교통로를 확보했습니다.", "card": {"name": "한강 유역", "kind": "핵심 개념", "icon": "🌊", "desc": "한강 유역을 차지하면서 신라는 중국과 직접 교류할 수 있는 교통로를 확보했습니다."}}], "open": {"q": "삼국의 왕들이 영토를 넓히는 것은 당시 백성들에게도 항상 좋은 일이었을까요? 자신의 생각과 근거를 써 보세요.", "core": ["영토 확장의 이익", "전쟁 부담", "백성의 입장"], "sample": "영토 확장은 교역과 자원 확보에 도움이 될 수 있지만, 전쟁에 동원되고 세금과 피해를 부담한 백성에게는 반드시 좋은 일만은 아니었다고 볼 수 있다."}, "reward": {"id": "ancient_4", "image": "assets/asset_004.png", "name": "진흥왕 순수비", "icon": "📜", "slot": "item", "desc": "신라 진흥왕의 영토 확장을 보여 주는 순수비"}}, {"id": 5, "icon": "🎨", "title": "삼국의 문화와 대외 교류", "subtitle": "학습지 주제 5", "theme": "학습지 미션", "questions": [{"type": "개념 질문", "q": "삼국이 불교를 정치적으로 받아들인 목적과 가장 가까운 것은?", "opts": ["왕권 강화와 사상 통합", "농경 금지", "지방 세력 독립", "철기 사용 중단"], "a": 0, "explain": "삼국은 불교를 왕권을 뒷받침하고 백성들의 사상을 통합하는 데 활용했습니다.", "card": {"name": "불교 수용", "kind": "핵심 개념", "icon": "🪷", "desc": "삼국은 불교를 왕권을 뒷받침하고 백성들의 사상을 통합하는 데 활용했습니다."}}, {"type": "사실 질문", "q": "고구려에서 유교 경전을 가르치기 위해 세운 교육 기관은?", "opts": ["태학", "국학", "국자감", "성균관"], "a": 0, "explain": "고구려는 수도에 태학을 세워 유교 경전을 가르쳤습니다.", "card": {"name": "태학", "kind": "핵심 개념", "icon": "📖", "desc": "고구려는 수도에 태학을 세워 유교 경전을 가르쳤습니다."}}, {"type": "사실 질문", "q": "웅진 시기 백제를 대표하는 벽돌무덤은?", "opts": ["무령왕릉", "천마총", "장군총", "정혜공주묘"], "a": 0, "explain": "무령왕릉은 중국의 벽돌무덤 양식과 일본산 자재가 함께 나타나는 백제 웅진 시기의 대표 무덤입니다.", "card": {"name": "무령왕릉", "kind": "핵심 개념", "icon": "🧱", "desc": "무령왕릉은 중국의 벽돌무덤 양식과 일본산 자재가 함께 나타나는 백제 웅진 시기의 대표 무덤입니다."}}, {"type": "사실 질문", "q": "백제가 일본에 유교 경전과 한문 문화를 전한 인물로 학습지에 등장하는 사람은?", "opts": ["왕인", "강감찬", "최치원", "윤관"], "a": 0, "explain": "왕인은 논어를 전하는 등 백제와 일본의 문화 교류와 관련된 인물입니다.", "card": {"name": "왕인", "kind": "핵심 개념", "icon": "📚", "desc": "왕인은 논어를 전하는 등 백제와 일본의 문화 교류와 관련된 인물입니다."}}], "open": {"q": "다른 나라의 문화를 받아들이는 것은 항상 발전으로 이어질까요? 삼국의 문화 교류를 떠올리며 근거와 함께 답해 보세요.", "core": ["문화 수용", "자기 사회에 맞게 변화", "긍정·부정 영향"], "sample": "외부 문화를 받아들이면 새로운 기술과 사상을 얻을 수 있지만, 무조건 그대로 받아들이기보다 자기 사회의 상황에 맞게 선택하고 변화시키는 과정이 중요하다."}, "reward": {"id": "ancient_5", "image": "assets/asset_005.png", "name": "백제 금동대향로", "icon": "🏺", "slot": "item", "desc": "백제의 뛰어난 예술성과 불교문화를 보여 주는 향로"}}, {"id": 6, "icon": "⚔️", "title": "고구려와 수·당 전쟁, 삼국 통일 전쟁", "subtitle": "학습지 주제 6", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "살수대첩에서 수나라 별동대를 크게 물리친 고구려 장군은?", "opts": ["을지문덕", "연개소문", "김유신", "계백"], "a": 0, "explain": "을지문덕은 살수에서 수나라 별동대를 크게 물리쳤습니다.", "card": {"name": "살수대첩", "kind": "핵심 개념", "icon": "⚔️", "desc": "을지문덕은 살수에서 수나라 별동대를 크게 물리쳤습니다."}}, {"type": "사실 질문", "q": "고구려가 당의 침입에 대비해 국경 지역에 쌓은 것은?", "opts": ["천리장성", "북한산성", "수원 화성", "남한산성"], "a": 0, "explain": "고구려는 당의 침입에 대비해 천리장성을 쌓았습니다.", "card": {"name": "천리장성", "kind": "핵심 개념", "icon": "🧱", "desc": "고구려는 당의 침입에 대비해 천리장성을 쌓았습니다."}}, {"type": "개념 질문", "q": "신라가 당과 연합하게 된 배경으로 가장 적절한 것은?", "opts": ["백제의 압박과 고구려의 지원 거부", "고구려가 먼저 당과 연합했기 때문", "가야가 신라를 통일했기 때문", "수나라가 신라를 공격했기 때문"], "a": 0, "explain": "백제의 공격으로 위기에 처한 신라는 고구려의 지원을 얻지 못하자 당과 연합했습니다.", "card": {"name": "나당 연합", "kind": "핵심 개념", "icon": "🤝", "desc": "백제의 공격으로 위기에 처한 신라는 고구려의 지원을 얻지 못하자 당과 연합했습니다."}}, {"type": "사실 질문", "q": "백제 부흥 운동 세력과 왜의 군대가 나당 연합군에 패한 전투는?", "opts": ["백강 전투", "귀주대첩", "안시성 전투", "매소성 전투"], "a": 0, "explain": "백강 전투에서 백제 부흥 운동군과 왜의 군대가 나당 연합군에 패했습니다.", "card": {"name": "백강 전투", "kind": "핵심 개념", "icon": "🌊", "desc": "백강 전투에서 백제 부흥 운동군과 왜의 군대가 나당 연합군에 패했습니다."}}], "open": {"q": "전쟁에서 승리한 나라는 항상 좋은 결과를 얻는다고 볼 수 있을까요? 이 시기 전쟁 사례를 이용해 답해 보세요.", "core": ["승리 이후의 국력 소모", "전쟁 피해", "정치적 결과"], "sample": "전투에서 이겨도 많은 사람과 물자가 소모되고 이후 다른 갈등이 생길 수 있으므로, 승리가 항상 좋은 결과만 가져온다고 보기는 어렵다."}, "reward": {"id": "ancient_6", "image": "assets/asset_006.png", "name": "문무왕릉", "icon": "🗺️", "slot": "item", "desc": "통일 신라 문무왕의 뜻을 상징하는 수중 왕릉"}}], "ready": true}, "northsouth": {"id": "northsouth", "name": "2. 남북국 시대", "seal": "남북국", "chapter": "2. 남북국 시대", "title": "통일 신라와 발해를 함께 탐험하라", "desc": "학습지 주제 7~10을 차례로 탐험합니다.", "note": "※ 학습지 한 주제가 앱의 미션 하나입니다. 아바타는 4단계로 성장하고, 성장하지 않는 미션에서도 시대 아이템을 획득합니다.", "ranks": [{"name": "남북국 탐험 새내기", "note": "삼국 통일과 발해 건국을 탐험합니다."}, {"name": "통치 제도 학습자", "note": "통일 신라와 발해의 제도를 이해합니다."}, {"name": "남북국 기록관", "note": "신라 말 변화와 남북국 문화를 연결합니다."}, {"name": "남북국 시대 자문관", "note": "남북국 시대의 정치·문화·교류 탐험을 완성했습니다."}], "stages": [{"id": 1, "icon": "🛡️", "title": "신라의 삼국 통일과 발해의 성립", "subtitle": "학습지 주제 7", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "나당 전쟁에서 신라가 당의 육군을 크게 물리친 전투는?", "opts": ["매소성 전투", "살수대첩", "황산벌 전투", "귀주대첩"], "a": 0, "explain": "신라는 매소성 전투에서 당의 육군을 크게 물리쳤습니다.", "card": {"name": "매소성 전투", "kind": "핵심 개념", "icon": "🛡️", "desc": "신라는 매소성 전투에서 당의 육군을 크게 물리쳤습니다."}}, {"type": "사실 질문", "q": "신라가 당의 수군을 격파한 전투는?", "opts": ["기벌포 전투", "안시성 전투", "백강 전투", "처인성 전투"], "a": 0, "explain": "신라는 기벌포에서 당의 수군을 격파했습니다.", "card": {"name": "기벌포 전투", "kind": "핵심 개념", "icon": "🌊", "desc": "신라는 기벌포에서 당의 수군을 격파했습니다."}}, {"type": "사실 질문", "q": "발해를 건국한 인물은?", "opts": ["대조영", "대무예", "대흠무", "유득공"], "a": 0, "explain": "대조영은 고구려 유민과 말갈인을 이끌고 동모산 부근에 발해를 세웠습니다.", "card": {"name": "대조영", "kind": "핵심 개념", "icon": "👑", "desc": "대조영은 고구려 유민과 말갈인을 이끌고 동모산 부근에 발해를 세웠습니다."}}, {"type": "개념 질문", "q": "발해가 우리 역사와 관련 있음을 보여 주는 근거로 학습지에서 제시된 것은?", "opts": ["고구려 계승 의식", "조선 왕실과 혼인", "훈민정음 사용", "한양 천도"], "a": 0, "explain": "발해는 고구려 옛 땅에 세워졌고 지배층에 고구려인이 많았으며 대외적으로 고구려 계승 의식을 드러냈습니다.", "card": {"name": "고구려 계승 의식", "kind": "핵심 개념", "icon": "📜", "desc": "발해는 고구려 옛 땅에 세워졌고 지배층에 고구려인이 많았으며 대외적으로 고구려 계승 의식을 드러냈습니다."}}], "open": {"q": "신라와 발해가 공존한 시기를 “통일 시대”라고 볼 수 있을까요? 자신의 생각과 근거를 써 보세요.", "core": ["신라의 삼국 통일", "발해의 건국", "남북국이라는 관점"], "sample": "신라는 한반도 남부를 통합했지만 북쪽에는 고구려를 계승한 발해가 존재했으므로, 남쪽 신라와 북쪽 발해가 공존한 남북국 시대로 보는 관점도 타당하다."}, "reward": {"id": "north_1", "image": "assets/asset_007.png", "name": "발해 정혜공주 묘비", "icon": "📜", "slot": "item", "desc": "발해 문화를 보여 주는 정혜공주 묘비"}}, {"id": 2, "icon": "🏛️", "title": "통일 신라의 통치 제도와 발해의 발전", "subtitle": "학습지 주제 8", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "신문왕이 귀족의 경제 기반을 약화하기 위해 폐지한 것은?", "opts": ["녹읍", "관료전", "국학", "9서당"], "a": 0, "explain": "신문왕은 귀족이 백성과 토지를 지배할 수 있는 녹읍을 폐지했습니다.", "card": {"name": "녹읍 폐지", "kind": "핵심 개념", "icon": "🚫", "desc": "신문왕은 귀족이 백성과 토지를 지배할 수 있는 녹읍을 폐지했습니다."}}, {"type": "사실 질문", "q": "통일 신라가 수도의 치우침을 보완하기 위해 지방 주요 지역에 설치한 것은?", "opts": ["5소경", "12목", "5도", "양계"], "a": 0, "explain": "통일 신라는 지방 주요 지역에 5소경을 설치했습니다.", "card": {"name": "5소경", "kind": "핵심 개념", "icon": "🏙️", "desc": "통일 신라는 지방 주요 지역에 5소경을 설치했습니다."}}, {"type": "사실 질문", "q": "발해가 전성기를 맞아 당으로부터 불린 이름은?", "opts": ["해동성국", "동방예의지국", "소중화", "해동제국"], "a": 0, "explain": "선왕 때 발해는 영토를 크게 넓혀 해동성국이라 불렸습니다.", "card": {"name": "해동성국", "kind": "핵심 개념", "icon": "✨", "desc": "선왕 때 발해는 영토를 크게 넓혀 해동성국이라 불렸습니다."}}, {"type": "개념 질문", "q": "발해의 통치 제도가 당 제도와 다르다는 점을 보여 주는 것은?", "opts": ["정당성을 중심으로 6부를 운영하고 유교 덕목을 부서 이름에 사용", "당의 제도를 전혀 수용하지 않음", "6부를 없애고 한 부서만 둠", "지방 제도를 운영하지 않음"], "a": 0, "explain": "발해는 당의 3성 6부를 참고했지만 정당성을 중심으로 운영하고 6부 명칭도 독자적으로 사용했습니다.", "card": {"name": "발해 통치 제도", "kind": "핵심 개념", "icon": "🏛️", "desc": "발해는 당의 3성 6부를 참고했지만 정당성을 중심으로 운영하고 6부 명칭도 독자적으로 사용했습니다."}}], "open": {"q": "발해가 당의 제도를 참고했다는 이유만으로 발해의 통치 제도는 독자성이 약했다고 볼 수 있을까요? 근거와 함께 답해 보세요.", "core": ["당 제도 수용", "정당성 중심 운영", "6부의 독자적 명칭"], "sample": "당의 제도를 참고했지만 정당성을 중심으로 운영하고 6부에 유교 덕목을 사용한 것처럼 발해식으로 바꾸어 사용했으므로 독자성이 없다고 보기는 어렵다."}, "reward": {"id": "north_2", "image": "assets/asset_008.png", "name": "발해 석사자", "icon": "🏛️", "slot": "item", "desc": "발해 문화의 독자성을 보여 주는 석사자"}}, {"id": 3, "icon": "🌲", "title": "신라 사회의 동요와 후삼국의 성립", "subtitle": "학습지 주제 9", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "신라 말 원성왕이 실시한 관리 선발 제도는?", "opts": ["독서삼품과", "과거제", "음서", "잡과"], "a": 0, "explain": "원성왕은 유교 경전의 이해 정도에 따라 관리를 선발하려는 독서삼품과를 실시했습니다.", "card": {"name": "독서삼품과", "kind": "핵심 개념", "icon": "📚", "desc": "원성왕은 유교 경전의 이해 정도에 따라 관리를 선발하려는 독서삼품과를 실시했습니다."}}, {"type": "사실 질문", "q": "신라 말 지방에서 군사력과 토지를 바탕으로 성장한 세력은?", "opts": ["호족", "6두품만", "문벌 귀족", "권문세족"], "a": 0, "explain": "중앙 정부의 통제력이 약해지면서 지방에서 호족이 성장했습니다.", "card": {"name": "호족", "kind": "핵심 개념", "icon": "🏯", "desc": "중앙 정부의 통제력이 약해지면서 지방에서 호족이 성장했습니다."}}, {"type": "개념 질문", "q": "선종이 호족과 백성에게 호응을 얻은 이유로 가장 적절한 것은?", "opts": ["경전 지식보다 수행과 깨달음을 강조해 접근하기 쉬웠기 때문", "진골만 깨달을 수 있다고 했기 때문", "중앙 귀족의 신분 질서를 강화했기 때문", "왕실만 후원할 수 있었기 때문"], "a": 0, "explain": "선종은 누구나 수행을 통해 깨달을 수 있다고 보아 호족과 백성의 지지를 받았습니다.", "card": {"name": "선종", "kind": "핵심 개념", "icon": "🧘", "desc": "선종은 누구나 수행을 통해 깨달을 수 있다고 보아 호족과 백성의 지지를 받았습니다."}}, {"type": "사실 질문", "q": "후백제와 후고구려를 세운 인물의 연결이 옳은 것은?", "opts": ["견훤-후백제, 궁예-후고구려", "궁예-후백제, 왕건-후고구려", "장보고-후백제, 견훤-후고구려", "최치원-후백제, 궁예-신라"], "a": 0, "explain": "견훤은 후백제를, 궁예는 후고구려를 세웠습니다.", "card": {"name": "후삼국", "kind": "핵심 개념", "icon": "⚔️", "desc": "견훤은 후백제를, 궁예는 후고구려를 세웠습니다."}}], "open": {"q": "신라 말 선종과 풍수지리설의 유행은 단순한 종교·사상의 변화였을까요, 정치적 변화의 시작이라고 볼 수 있을까요?", "core": ["호족의 성장", "중앙 귀족 질서에 대한 변화", "지방의 중요성"], "sample": "정치적 변화와도 연결된다고 볼 수 있다. 선종과 풍수지리설은 지방 호족의 지지를 받았고, 중앙 중심의 기존 질서와 다른 새로운 세력의 성장에 사상적 기반을 제공했기 때문이다."}, "reward": {"id": "north_3", "image": "assets/asset_009.png", "name": "여주 고달사지 승탑", "icon": "🗿", "slot": "item", "desc": "선종 유행과 지방 사회 변화를 보여 주는 승탑"}}, {"id": 4, "icon": "⛵", "title": "통일 신라와 발해의 불교문화 및 대외 교류", "subtitle": "학습지 주제 10", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "원효가 불교 대중화에 활용한 방법으로 학습지에 제시된 것은?", "opts": ["나무아미타불을 외우면 누구나 성불할 수 있다고 가르침", "과거 시험을 실시함", "왕만 불교를 믿도록 함", "선종을 금지함"], "a": 0, "explain": "원효는 쉬운 가르침을 통해 불교를 일반 백성에게 널리 퍼뜨렸습니다.", "card": {"name": "원효", "kind": "핵심 개념", "icon": "🪷", "desc": "원효는 쉬운 가르침을 통해 불교를 일반 백성에게 널리 퍼뜨렸습니다."}}, {"type": "사실 질문", "q": "의상이 당 유학 후 신라에 전한 사상은?", "opts": ["화엄 사상", "성리학", "실학", "천주교"], "a": 0, "explain": "의상은 화엄 사상을 전파하고 부석사 등을 세웠습니다.", "card": {"name": "의상", "kind": "핵심 개념", "icon": "⛩️", "desc": "의상은 화엄 사상을 전파하고 부석사 등을 세웠습니다."}}, {"type": "사실 질문", "q": "장보고가 설치하여 동아시아 해상 무역의 중심지가 된 곳은?", "opts": ["청해진", "벽란도", "당항성", "웅진"], "a": 0, "explain": "장보고는 완도에 청해진을 설치하고 당·신라·일본을 잇는 해상 무역을 장악했습니다.", "card": {"name": "청해진", "kind": "핵심 개념", "icon": "⛵", "desc": "장보고는 완도에 청해진을 설치하고 당·신라·일본을 잇는 해상 무역을 장악했습니다."}}, {"type": "사실 질문", "q": "발해가 신라와 교류할 때 이용한 교통로는?", "opts": ["신라도", "영남대로", "의주대로", "사신도"], "a": 0, "explain": "발해는 동경 용원부에서 신라 국경까지 이어진 신라도를 통해 교류했습니다.", "card": {"name": "신라도", "kind": "핵심 개념", "icon": "🛤️", "desc": "발해는 동경 용원부에서 신라 국경까지 이어진 신라도를 통해 교류했습니다."}}], "open": {"q": "장보고의 청해진 활동은 신라에 더 큰 도움이 되었을까요, 중앙 정부에는 위협이 되었을까요? 근거와 함께 답해 보세요.", "core": ["해상 무역 활성화", "해적 소탕", "강한 지방 세력의 성장"], "sample": "청해진은 해적을 소탕하고 국제 무역을 활성화해 신라에 도움이 되었지만, 장보고가 큰 군사·경제력을 가지면서 중앙 정부에는 위협이 될 수도 있었다."}, "reward": {"id": "north_4", "image": "assets/asset_010.png", "name": "무구정광대다라니경", "icon": "🧭", "slot": "item", "desc": "통일 신라의 불교문화와 목판 인쇄술을 보여 주는 경전"}}], "ready": true}, "goryeo": {"id": "goryeo", "name": "3. 고려의 성립과 발전", "seal": "고려", "chapter": "3. 고려의 성립과 발전", "title": "고려 500년의 변화 속으로", "desc": "학습지 주제 11~16을 차례로 탐험합니다.", "note": "※ 학습지 한 주제가 앱의 미션 하나입니다. 아바타는 4단계로 성장하고, 성장하지 않는 미션에서도 시대 아이템을 획득합니다.", "ranks": [{"name": "고려 탐험 새내기", "note": "왕건과 후삼국 통일부터 시작합니다."}, {"name": "고려 제도 학습자", "note": "고려의 정치와 사회 제도를 이해합니다."}, {"name": "고려 시대 기록관", "note": "무신 정권과 대외 관계, 고려 말 변화를 기록합니다."}, {"name": "고려 시대 자문관", "note": "고려의 정치·사회·문화를 종합하여 탐험을 완성했습니다."}], "stages": [{"id": 1, "icon": "👑", "title": "고려의 후삼국 통일", "subtitle": "학습지 주제 11", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "고려를 건국하고 후삼국을 통일한 인물은?", "opts": ["왕건", "궁예", "견훤", "광종"], "a": 0, "explain": "왕건은 궁예를 대신해 왕위에 오른 뒤 고려를 세우고 후삼국을 통일했습니다.", "card": {"name": "태조 왕건", "kind": "핵심 개념", "icon": "👑", "desc": "왕건은 궁예를 대신해 왕위에 오른 뒤 고려를 세우고 후삼국을 통일했습니다."}}, {"type": "사실 질문", "q": "태조가 호족의 자제를 수도에 머물게 한 제도는?", "opts": ["기인 제도", "사심관 제도", "음서", "독서삼품과"], "a": 0, "explain": "기인 제도는 호족 자제를 수도에 머물게 하여 호족을 견제하고 지방 행정 자문을 받는 제도였습니다.", "card": {"name": "기인 제도", "kind": "핵심 개념", "icon": "🏛️", "desc": "기인 제도는 호족 자제를 수도에 머물게 하여 호족을 견제하고 지방 행정 자문을 받는 제도였습니다."}}, {"type": "사실 질문", "q": "광종이 호족이 불법으로 차지한 노비를 양인으로 해방한 제도는?", "opts": ["노비안검법", "전민변정도감", "균역법", "과전법"], "a": 0, "explain": "광종은 노비안검법을 실시해 호족의 경제·군사 기반을 약화했습니다.", "card": {"name": "노비안검법", "kind": "핵심 개념", "icon": "🔓", "desc": "광종은 노비안검법을 실시해 호족의 경제·군사 기반을 약화했습니다."}}, {"type": "개념 질문", "q": "광종의 과거제가 왕권 강화에 도움이 된 이유는?", "opts": ["왕이 능력 있는 새로운 관리를 선발할 수 있었기 때문에", "호족의 자녀만 자동으로 관리가 되었기 때문에", "지방관을 모두 폐지했기 때문에", "왕위를 시험으로 뽑았기 때문에"], "a": 0, "explain": "과거제를 통해 왕은 기존 호족 세력에만 의존하지 않고 새로운 관리를 선발할 수 있었습니다.", "card": {"name": "과거제", "kind": "핵심 개념", "icon": "📝", "desc": "과거제를 통해 왕은 기존 호족 세력에만 의존하지 않고 새로운 관리를 선발할 수 있었습니다."}}], "open": {"q": "광종의 과거제는 신분보다 능력을 중시한 공정한 제도였다고 볼 수 있을까요? 근거와 함께 써 보세요.", "core": ["시험을 통한 선발", "응시 기회의 한계", "기존 신분 질서"], "sample": "시험을 통해 능력을 평가했다는 점에서는 이전보다 능력을 중시했다고 볼 수 있지만, 모든 사람이 같은 조건으로 응시한 것은 아니므로 오늘날과 같은 완전한 공정 제도라고 보기는 어렵다."}, "reward": {"id": "goryeo_1", "image": "assets/asset_011.png", "name": "훈요 10조", "icon": "📜", "slot": "item", "desc": "고려 건국 이념과 통치 방향을 담은 훈요 10조"}}, {"id": 2, "icon": "🏛️", "title": "통치 체제의 정비", "subtitle": "학습지 주제 12", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "고려의 중앙 정치에서 국가 정책을 심의하고 결정한 최고 기구는?", "opts": ["중서문하성", "상서성", "중추원", "삼사"], "a": 0, "explain": "중서문하성은 고려 중앙 정치의 최고 기구로 국가 정책을 심의하고 결정했습니다.", "card": {"name": "중서문하성", "kind": "핵심 개념", "icon": "🏛️", "desc": "중서문하성은 고려 중앙 정치의 최고 기구로 국가 정책을 심의하고 결정했습니다."}}, {"type": "사실 질문", "q": "고려의 독자적 회의 기구로 국방과 군사 문제를 논의한 곳은?", "opts": ["도병마사", "식목도감", "어사대", "국자감"], "a": 0, "explain": "도병마사는 중서문하성과 중추원의 고위 관료가 참여하여 국방과 군사 문제를 논의했습니다.", "card": {"name": "도병마사", "kind": "핵심 개념", "icon": "🛡️", "desc": "도병마사는 중서문하성과 중추원의 고위 관료가 참여하여 국방과 군사 문제를 논의했습니다."}}, {"type": "사실 질문", "q": "고려의 지방 행정 구역 중 군사적 성격이 강한 국경 지역은?", "opts": ["양계", "5도", "경기", "12목만"], "a": 0, "explain": "동계와 북계의 양계는 국경 방어를 위한 군사 행정 구역이었습니다.", "card": {"name": "양계", "kind": "핵심 개념", "icon": "🗺️", "desc": "동계와 북계의 양계는 국경 방어를 위한 군사 행정 구역이었습니다."}}, {"type": "개념 질문", "q": "고려에서 과거와 음서가 함께 운영되었다는 사실이 보여 주는 특징은?", "opts": ["능력에 따른 선발과 신분적 특권이 함께 존재했다", "모든 관리가 시험만으로 선발되었다", "관리 선발이 전혀 없었다", "농민만 관리가 될 수 있었다"], "a": 0, "explain": "과거는 시험을 통한 선발이었지만 음서는 고위 관리의 자손에게 특혜를 주어 두 원리가 함께 존재했습니다.", "card": {"name": "과거와 음서", "kind": "핵심 개념", "icon": "⚖️", "desc": "과거는 시험을 통한 선발이었지만 음서는 고위 관리의 자손에게 특혜를 주어 두 원리가 함께 존재했습니다."}}], "open": {"q": "음서 제도는 불공정한 제도였다고 볼 수 있을까요? 과거제와 비교하여 자신의 생각을 써 보세요.", "core": ["음서의 신분 특혜", "과거의 시험 선발", "고려 사회의 신분 질서"], "sample": "음서는 고위 관리의 자손에게 시험 없이 관직 진출 기회를 주었다는 점에서 특혜가 있는 제도였다. 다만 고려의 신분 질서 속에서 운영된 제도라는 시대적 배경도 함께 고려할 수 있다."}, "reward": {"id": "goryeo_2", "image": "assets/asset_012.png", "name": "개성 만월대", "icon": "🏷️", "slot": "item", "desc": "고려 왕궁 터로 정치 중심지를 보여 주는 개성 만월대"}}, {"id": 3, "icon": "⚔️", "title": "무신 정권의 성립과 변천", "subtitle": "학습지 주제 13", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "이자겸의 난과 묘청의 난이 일어난 시기의 지배층을 무엇이라 하나요?", "opts": ["문벌 귀족", "호족", "권문세족", "신진 사대부"], "a": 0, "explain": "여러 대에 걸쳐 고위 관직을 차지한 문벌 귀족이 고려 전기 정치의 중심이었습니다.", "card": {"name": "문벌 귀족", "kind": "핵심 개념", "icon": "🏰", "desc": "여러 대에 걸쳐 고위 관직을 차지한 문벌 귀족이 고려 전기 정치의 중심이었습니다."}}, {"type": "개념 질문", "q": "무신 정변이 일어난 주요 배경으로 가장 적절한 것은?", "opts": ["무신 차별과 의종의 실정", "몽골풍의 유행", "신진 사대부의 성리학 수용", "공민왕의 반원 정책"], "a": 0, "explain": "문신 중심의 정치와 무신 차별, 의종의 실정 등이 무신들의 불만을 키웠습니다.", "card": {"name": "무신 정변", "kind": "핵심 개념", "icon": "⚔️", "desc": "문신 중심의 정치와 무신 차별, 의종의 실정 등이 무신들의 불만을 키웠습니다."}}, {"type": "사실 질문", "q": "최충헌이 설치해 국가의 중요한 정책을 결정한 기구는?", "opts": ["교정도감", "정방", "중방", "정동행성"], "a": 0, "explain": "최충헌은 교정도감을 설치하여 국가의 중요한 정책을 결정했습니다.", "card": {"name": "교정도감", "kind": "핵심 개념", "icon": "📜", "desc": "최충헌은 교정도감을 설치하여 국가의 중요한 정책을 결정했습니다."}}, {"type": "사실 질문", "q": "최충헌의 사노비로 신분 해방을 주장하며 봉기를 계획한 인물은?", "opts": ["만적", "망이", "망소이", "김사미"], "a": 0, "explain": "만적은 신분 차별 자체를 없애려 한 봉기를 계획하여 최초의 신분 해방 운동으로 평가되기도 합니다.", "card": {"name": "만적", "kind": "핵심 개념", "icon": "✊", "desc": "만적은 신분 차별 자체를 없애려 한 봉기를 계획하여 최초의 신분 해방 운동으로 평가되기도 합니다."}}], "open": {"q": "고려가 서경으로 수도를 옮겼다면 나라가 더 강해졌을까요? 묘청의 주장을 떠올리며 근거와 함께 답해 보세요.", "core": ["서경 천도 주장", "풍수지리설", "대외 관계와 정치 갈등"], "sample": "서경 천도가 북방 진출에 유리했을 가능성은 있지만, 수도를 옮긴다고 정치 갈등과 문벌 사회의 문제까지 자동으로 해결되는 것은 아니므로 효과를 단정하기 어렵다."}, "reward": {"id": "goryeo_3", "image": "assets/asset_013.png", "name": "정중부의 칼", "icon": "🛡️", "slot": "item", "desc": "무신정권의 성립을 상징하는 정중부의 칼"}}, {"id": 4, "icon": "🌏", "title": "고려 전기의 대외 관계와 고려의 대몽 항쟁", "subtitle": "학습지 주제 14", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "거란의 1차 침입 때 외교 담판으로 강동 6주를 얻은 인물은?", "opts": ["서희", "강감찬", "윤관", "양규"], "a": 0, "explain": "서희는 거란의 침입 목적을 파악하고 외교 담판을 통해 강동 6주를 확보했습니다.", "card": {"name": "서희", "kind": "핵심 개념", "icon": "🤝", "desc": "서희는 거란의 침입 목적을 파악하고 외교 담판을 통해 강동 6주를 확보했습니다."}}, {"type": "사실 질문", "q": "거란의 3차 침입을 귀주에서 크게 물리친 인물은?", "opts": ["강감찬", "서희", "윤관", "김윤후"], "a": 0, "explain": "강감찬은 귀주에서 거란군을 크게 물리쳐 귀주대첩을 이끌었습니다.", "card": {"name": "귀주대첩", "kind": "핵심 개념", "icon": "⚔️", "desc": "강감찬은 귀주에서 거란군을 크게 물리쳐 귀주대첩을 이끌었습니다."}}, {"type": "사실 질문", "q": "윤관이 여진을 정벌하기 위해 조직한 군대는?", "opts": ["별무반", "삼별초", "2군 6위", "9서당"], "a": 0, "explain": "윤관은 기병 중심의 여진에 대응하기 위해 별무반을 조직했습니다.", "card": {"name": "별무반", "kind": "핵심 개념", "icon": "🐎", "desc": "윤관은 기병 중심의 여진에 대응하기 위해 별무반을 조직했습니다."}}, {"type": "개념 질문", "q": "고려가 몽골 침입 때 강화도로 수도를 옮긴 이유는?", "opts": ["바다 싸움에 익숙하지 않은 몽골군에 맞서기 유리해서", "송나라의 수도와 가까워서", "농사를 완전히 포기하려고", "거란과 동맹을 맺기 위해"], "a": 0, "explain": "강화도는 바다로 둘러싸여 있어 몽골 기병의 공격을 피하며 장기 항전하기에 유리했습니다.", "card": {"name": "강화도 천도", "kind": "핵심 개념", "icon": "🏝️", "desc": "강화도는 바다로 둘러싸여 있어 몽골 기병의 공격을 피하며 장기 항전하기에 유리했습니다."}}], "open": {"q": "고려는 강한 외세와 맞설 때 싸움과 외교 중 무엇을 더 중요하게 선택해야 했을까요? 서희의 외교와 대몽 항쟁을 비교해 답해 보세요.", "core": ["서희의 외교 담판", "무력 항쟁", "상황에 따른 선택"], "sample": "상대의 목적과 힘의 차이를 고려해 외교와 항쟁을 상황에 맞게 선택하는 것이 중요하다. 서희는 외교로 영토를 얻었지만 몽골의 침입에는 군사적 항쟁도 필요했다."}, "reward": {"id": "goryeo_4", "image": "assets/asset_014.png", "name": "고려대장경판", "icon": "🪵", "slot": "item", "desc": "대몽 항쟁과 불교문화를 보여 주는 고려대장경판"}}, {"id": 5, "icon": "🏹", "title": "원의 간섭과 공민왕의 개혁, 새로운 세력의 등장", "subtitle": "학습지 주제 15", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "원이 일본 원정을 준비하기 위해 고려에 설치했고 이후 내정 간섭에 이용한 기구는?", "opts": ["정동행성", "교정도감", "도병마사", "전민변정도감"], "a": 0, "explain": "정동행성은 일본 원정을 위해 설치되었지만 이후 고려 내정 간섭에도 이용되었습니다.", "card": {"name": "정동행성", "kind": "핵심 개념", "icon": "🏯", "desc": "정동행성은 일본 원정을 위해 설치되었지만 이후 고려 내정 간섭에도 이용되었습니다."}}, {"type": "사실 질문", "q": "공민왕이 권문세족에게 빼앗긴 토지와 억울하게 노비가 된 사람의 신분을 바로잡기 위해 설치한 기구는?", "opts": ["전민변정도감", "노비안검법", "정방", "중추원"], "a": 0, "explain": "공민왕은 신돈을 등용해 전민변정도감을 설치하고 토지와 노비 문제를 바로잡으려 했습니다.", "card": {"name": "전민변정도감", "kind": "핵심 개념", "icon": "⚖️", "desc": "공민왕은 신돈을 등용해 전민변정도감을 설치하고 토지와 노비 문제를 바로잡으려 했습니다."}}, {"type": "개념 질문", "q": "신진 사대부의 특징으로 옳은 것은?", "opts": ["성리학을 수용하고 과거를 통해 관리로 진출했다", "원 황실과 혼인한 권문세족만을 의미한다", "무신 정변을 일으킨 세력이다", "농민 봉기의 지도자만을 말한다"], "a": 0, "explain": "신진 사대부는 성리학을 받아들이고 과거를 통해 중앙 정치에 진출했습니다.", "card": {"name": "신진 사대부", "kind": "핵심 개념", "icon": "📖", "desc": "신진 사대부는 성리학을 받아들이고 과거를 통해 중앙 정치에 진출했습니다."}}, {"type": "사실 질문", "q": "이성계가 요동 정벌에 반대해 군대를 돌린 사건은?", "opts": ["위화도 회군", "묘청의 난", "무신 정변", "귀주대첩"], "a": 0, "explain": "이성계는 위화도에서 군대를 돌려 개경으로 돌아와 권력을 장악했습니다.", "card": {"name": "위화도 회군", "kind": "핵심 개념", "icon": "↩️", "desc": "이성계는 위화도에서 군대를 돌려 개경으로 돌아와 권력을 장악했습니다."}}], "open": {"q": "정몽주가 고려를 끝까지 지키려 한 선택은 충성스러운 신념이었을까요, 시대 변화를 받아들이지 못한 고집이었을까요? 근거와 함께 써 보세요.", "core": ["고려 유지 입장", "새 왕조를 주장한 세력", "자신의 정치적 신념"], "sample": "신념으로 볼 수도 있다. 정몽주는 고려 왕조를 유지해야 한다는 자신의 정치적 원칙을 끝까지 지켰다. 반대로 당시 사회의 큰 변화를 받아들이지 못한 선택으로 해석할 수도 있으므로 근거가 중요하다."}, "reward": {"id": "goryeo_5", "image": "assets/asset_015.png", "name": "공민왕릉", "icon": "📖", "slot": "item", "desc": "공민왕의 개혁 의지를 상징하는 공민왕릉"}}, {"id": 6, "icon": "🏺", "title": "고려의 사회 모습과 사상, 불교문화와 예술", "subtitle": "학습지 주제 16", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "고려에서 흉년이나 식량이 부족할 때 농민에게 곡식을 빌려준 제도는?", "opts": ["의창", "동서대비원", "상평창", "혜민국"], "a": 0, "explain": "의창은 어려운 시기에 농민에게 곡식을 빌려주고 가을에 갚게 한 구휼 제도였습니다.", "card": {"name": "의창", "kind": "핵심 개념", "icon": "🌾", "desc": "의창은 어려운 시기에 농민에게 곡식을 빌려주고 가을에 갚게 한 구휼 제도였습니다."}}, {"type": "개념 질문", "q": "고려 가족 제도의 특징으로 학습지 내용과 맞는 것은?", "opts": ["재혼 여성과 자녀에 대한 차별이 비교적 적고 사위·외손자도 음서 혜택을 받을 수 있었다", "여성의 재혼이 법으로 완전히 금지되었다", "외손자는 가족으로 인정하지 않았다", "모든 재산은 장남만 상속했다"], "a": 0, "explain": "고려는 재혼이 가능했고 여성과 남성의 가족 관계가 조선 후기에 비해 비교적 유연했습니다.", "card": {"name": "고려 가족 제도", "kind": "핵심 개념", "icon": "👪", "desc": "고려는 재혼이 가능했고 여성과 남성의 가족 관계가 조선 후기에 비해 비교적 유연했습니다."}}, {"type": "사실 질문", "q": "안향이 고려에 소개하고 신진 사대부가 적극 수용한 사상은?", "opts": ["성리학", "실학", "천주교", "동학"], "a": 0, "explain": "성리학은 안향이 고려에 소개했고 이후 신진 사대부가 적극 받아들였습니다.", "card": {"name": "성리학", "kind": "핵심 개념", "icon": "📚", "desc": "성리학은 안향이 고려에 소개했고 이후 신진 사대부가 적극 받아들였습니다."}}, {"type": "사실 질문", "q": "현재 남아 있는 가장 오래된 금속 활자본으로 학습지에 제시된 것은?", "opts": ["직지심체요절", "상정고금예문", "삼국사기", "팔만대장경"], "a": 0, "explain": "직지심체요절은 현존하는 가장 오래된 금속 활자본으로 소개됩니다.", "card": {"name": "직지심체요절", "kind": "핵심 개념", "icon": "📖", "desc": "직지심체요절은 현존하는 가장 오래된 금속 활자본으로 소개됩니다."}}], "open": {"q": "『직지심체요절』처럼 외국에 보관된 문화재는 원래 만들어진 나라로 돌아와야 할까요? 자신의 생각과 근거를 써 보세요.", "core": ["문화재의 역사적 맥락", "보존과 접근", "소유와 반환 문제"], "sample": "원래 만들어진 나라에서 역사적 맥락과 함께 보존·전시할 수 있다는 점에서 반환을 주장할 수 있다. 한편 현재의 소유 관계와 보존 환경, 국제적 접근성 등도 함께 고려해야 한다."}, "reward": {"id": "goryeo_6", "image": "assets/asset_016.png", "name": "고려 청자", "icon": "🏺", "slot": "item", "desc": "고려의 대표적인 예술품인 고려 청자"}}], "ready": true}, "joseon": {"id": "joseon", "name": "4. 조선의 성립과 발전", "seal": "조선 전기", "chapter": "4. 조선의 성립과 발전", "title": "유교 국가 조선의 기틀과 변화", "desc": "학습지 주제 1~8을 따라 조선 건국부터 왜란과 호란 이후의 변화까지 탐험합니다.", "note": "※ 학습지 한 주제가 앱의 미션 하나입니다. 조선 전기는 8개의 미션으로 구성되며 아바타는 4단계로 성장합니다.", "ranks": [{"name": "조선 탐험 새내기", "note": "조선 건국과 한양 천도에서 탐험을 시작합니다."}, {"name": "유교 국가 학습자", "note": "조선의 통치 체제와 외교 원리를 이해합니다."}, {"name": "조선 전기 기록관", "note": "사림의 성장과 성리학 사회, 문화 발전을 연결합니다."}, {"name": "조선 전기 자문관", "note": "왜란과 호란까지 조선 전기의 흐름을 완성했습니다."}], "stages": [{"id": 1, "icon": "🏯", "title": "조선의 건국과 기틀 마련", "subtitle": "학습지 주제 1", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "고려 말 이성계와 신진 사대부가 정권을 장악한 계기가 된 사건은 무엇인가요?", "opts": ["위화도 회군", "계유정난", "무신 정변", "인조 반정"], "a": 0, "explain": "이성계는 위화도 회군을 통해 정치적 주도권을 잡았습니다.", "card": {"name": "위화도 회군", "kind": "핵심 개념", "icon": "↩️", "desc": "이성계는 위화도 회군을 통해 정치적 주도권을 잡았습니다."}}, {"type": "개념 질문", "q": "정도전이 주장한 조선의 정치 운영 방식으로 가장 적절한 것은?", "opts": ["재상 중심 정치", "왕권 절대 정치", "무신 중심 정치", "지방 자치 정치"], "a": 0, "explain": "정도전은 현명한 재상이 왕을 보좌하여 국정을 이끄는 재상 중심 정치를 주장했습니다.", "card": {"name": "정도전의 정치론", "kind": "핵심 개념", "icon": "📜", "desc": "정도전은 현명한 재상이 왕을 보좌하여 국정을 이끄는 재상 중심 정치를 주장했습니다."}}, {"type": "사실 질문", "q": "태종이 왕권 강화를 위해 실시한 제도는?", "opts": ["의정부 서사제", "6조 직계제", "대동법", "균역법"], "a": 1, "explain": "태종은 6조가 국왕에게 직접 보고하는 6조 직계제를 실시했습니다.", "card": {"name": "6조 직계제", "kind": "핵심 개념", "icon": "👑", "desc": "태종은 6조가 국왕에게 직접 보고하는 6조 직계제를 실시했습니다."}}, {"type": "사실 질문", "q": "성종 때 완성되어 조선의 유교적 통치 질서를 확립한 기본 법전은?", "opts": ["경국대전", "고려사", "국조오례의", "동국통감"], "a": 0, "explain": "경국대전은 성종 때 완성된 조선의 기본 법전입니다.", "card": {"name": "경국대전", "kind": "핵심 개념", "icon": "📘", "desc": "경국대전은 성종 때 완성된 조선의 기본 법전입니다."}}], "open": {"q": "세종이 경연을 열고 의정부 서사제를 실시하여 신하들과 많이 의논한 것은 왕의 힘을 약하게 한 것일까요, 오히려 정치를 더 안정시키는 방법이었을까요? 근거와 함께 써 보세요.", "core": ["경연", "의정부 서사제", "왕권과 신권의 조화"], "sample": "신하들과 토론하고 재상의 의견을 활용하면 왕이 독단적으로 판단할 위험을 줄이고 더 다양한 의견을 정책에 반영할 수 있으므로 정치를 안정시키는 데 도움이 될 수 있다."}, "reward": {"id": "joseon_1", "image": "assets/asset_017.png", "name": "태조 어진", "icon": "📘", "slot": "item", "desc": "조선 건국의 상징인 태조 어진"}}, {"id": 2, "icon": "🏛️", "title": "조선의 통치 체제 정비", "subtitle": "학습지 주제 2", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "조선의 3사에 해당하지 않는 기관은?", "opts": ["사헌부", "사간원", "홍문관", "승정원"], "a": 3, "explain": "3사는 사헌부, 사간원, 홍문관이며 언론 기능을 담당했습니다.", "card": {"name": "3사", "kind": "핵심 개념", "icon": "🗣️", "desc": "3사는 사헌부, 사간원, 홍문관이며 언론 기능을 담당했습니다."}}, {"type": "사실 질문", "q": "각 도에 파견되어 수령을 감독한 관리는?", "opts": ["관찰사", "향리", "이조 전랑", "승지"], "a": 0, "explain": "관찰사는 각 도에 파견되어 수령을 감독했습니다.", "card": {"name": "관찰사", "kind": "핵심 개념", "icon": "🧭", "desc": "관찰사는 각 도에 파견되어 수령을 감독했습니다."}}, {"type": "사실 질문", "q": "조선의 중앙군으로 궁궐과 한양을 방어한 군사 조직은?", "opts": ["5위", "별무반", "삼별초", "속오군"], "a": 0, "explain": "조선 전기의 중앙군은 5위였습니다.", "card": {"name": "5위", "kind": "핵심 개념", "icon": "🛡️", "desc": "조선 전기의 중앙군은 5위였습니다."}}, {"type": "개념 질문", "q": "조선의 과거 시험을 바르게 나눈 것은?", "opts": ["문과·무과·잡과", "문과·승과·잡과", "무과·음서·천거", "생원과·진사과·음서"], "a": 0, "explain": "조선의 과거는 문관을 뽑는 문과, 무관을 뽑는 무과, 기술관을 뽑는 잡과로 나뉘었습니다.", "card": {"name": "과거제", "kind": "핵심 개념", "icon": "📝", "desc": "조선의 과거는 문관을 뽑는 문과, 무관을 뽑는 무과, 기술관을 뽑는 잡과로 나뉘었습니다."}}], "open": {"q": "시험으로 관리를 선발하는 과거제는 공정한 제도였다고 볼 수 있을까요? 평민의 응시 가능성과 실제 생활 조건을 함께 생각하여 답해 보세요.", "core": ["시험 선발", "평민 응시 가능", "경제적·시간적 제약"], "sample": "원칙적으로 신분보다 시험 성적을 중시했다는 점에서는 공정성을 높였지만, 평민은 생업 때문에 공부할 시간과 비용을 마련하기 어려워 실제 기회는 제한적이었다."}, "reward": {"id": "joseon_2", "image": "assets/asset_018.png", "name": "경국대전", "icon": "🗣️", "slot": "item", "desc": "조선의 통치 체제를 정리한 법전 경국대전"}}, {"id": 3, "icon": "🌏", "title": "조선의 대외 관계와 외교 정책", "subtitle": "학습지 주제 3", "theme": "학습지 미션", "questions": [{"type": "개념 질문", "q": "조선 전기 외교의 기본 원칙을 무엇이라 하나요?", "opts": ["사대교린", "북벌정책", "중립외교", "통상수교"], "a": 0, "explain": "조선은 명에는 사대, 여진과 일본에는 교린을 기본으로 하는 사대교린 정책을 폈습니다.", "card": {"name": "사대교린", "kind": "핵심 개념", "icon": "🤝", "desc": "조선은 명에는 사대, 여진과 일본에는 교린을 기본으로 하는 사대교린 정책을 폈습니다."}}, {"type": "개념 질문", "q": "조선이 명과 사대 관계를 유지하며 얻은 이익으로 적절한 것은?", "opts": ["국왕의 국제적 인정과 선진 문물 수용", "명의 직접 내정 통치", "일본 정복권 확보", "군역 면제"], "a": 0, "explain": "책봉을 통해 국왕의 지위를 인정받고 사신 왕래를 통해 선진 문물을 받아들였습니다.", "card": {"name": "명과의 사대", "kind": "핵심 개념", "icon": "🎁", "desc": "책봉을 통해 국왕의 지위를 인정받고 사신 왕래를 통해 선진 문물을 받아들였습니다."}}, {"type": "사실 질문", "q": "세종 때 여진을 몰아내고 개척한 지역은?", "opts": ["4군 6진", "강동 6주", "동북 9성", "9주 5소경"], "a": 0, "explain": "세종 때 압록강과 두만강 일대에 4군 6진을 개척했습니다.", "card": {"name": "4군 6진", "kind": "핵심 개념", "icon": "🗺️", "desc": "세종 때 압록강과 두만강 일대에 4군 6진을 개척했습니다."}}, {"type": "사실 질문", "q": "일본에 대한 회유책으로 조선이 개항한 세 항구는?", "opts": ["부산포·염포·제포", "부산·인천·원산", "제포·벽란도·울산", "부산포·강화도·제주"], "a": 0, "explain": "조선은 부산포, 염포, 제포의 3포를 개항해 제한적으로 무역을 허용했습니다.", "card": {"name": "3포", "kind": "핵심 개념", "icon": "⚓", "desc": "조선은 부산포, 염포, 제포의 3포를 개항해 제한적으로 무역을 허용했습니다."}}], "open": {"q": "조선이 명에 사대한 것은 약한 외교였을까요, 당시 상황을 고려한 현실적인 외교였을까요? 조공·책봉과 교류의 이익을 근거로 써 보세요.", "core": ["조공과 책봉", "국제적 인정", "경제·문화 교류", "자주성 유지"], "sample": "명과의 사대는 형식적으로 위계가 있었지만 조선은 내정의 자주성을 유지했고, 책봉을 통해 왕의 지위를 인정받으며 선진 문물과 답례품을 얻었으므로 당시 국제 질서를 활용한 현실적인 외교로 볼 수 있다."}, "reward": {"id": "joseon_3", "image": "assets/asset_019.png", "name": "해동제국기", "icon": "📜", "slot": "item", "desc": "조선 전기 대외 인식과 외교 정보를 담은 해동제국기"}}, {"id": 4, "icon": "⚖️", "title": "사림의 성장과 붕당의 등장", "subtitle": "학습지 주제 4", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "성종이 훈구를 견제하기 위해 등용한 세력은?", "opts": ["사림", "권문세족", "무신", "호족"], "a": 0, "explain": "성종은 훈구를 견제하기 위해 김종직을 비롯한 사림을 등용했습니다.", "card": {"name": "사림", "kind": "핵심 개념", "icon": "🌿", "desc": "성종은 훈구를 견제하기 위해 김종직을 비롯한 사림을 등용했습니다."}}, {"type": "사실 질문", "q": "김종직의 『조의제문』이 문제가 되어 일어난 사화는?", "opts": ["무오사화", "갑자사화", "기묘사화", "을사사화"], "a": 0, "explain": "『조의제문』이 세조의 왕위 찬탈을 비판한 글로 해석되면서 무오사화가 일어났습니다.", "card": {"name": "무오사화", "kind": "핵심 개념", "icon": "📜", "desc": "『조의제문』이 세조의 왕위 찬탈을 비판한 글로 해석되면서 무오사화가 일어났습니다."}}, {"type": "사실 질문", "q": "조광조가 학식과 덕망 있는 사람을 추천받아 관리로 뽑기 위해 실시한 제도는?", "opts": ["현량과", "음서", "독서삼품과", "천거제"], "a": 0, "explain": "조광조는 사림 중심의 개혁을 위해 현량과를 실시했습니다.", "card": {"name": "현량과", "kind": "핵심 개념", "icon": "🎓", "desc": "조광조는 사림 중심의 개혁을 위해 현량과를 실시했습니다."}}, {"type": "개념 질문", "q": "동인과 서인이 나뉘는 데 직접적인 계기가 된 갈등은?", "opts": ["이조 전랑 임명 문제", "대마도 정벌", "과전법 실시", "훈민정음 창제"], "a": 0, "explain": "김효원과 심의겸을 둘러싼 이조 전랑 임명 문제가 사림 분열의 직접적 계기가 되었습니다.", "card": {"name": "붕당의 형성", "kind": "핵심 개념", "icon": "⚖️", "desc": "김효원과 심의겸을 둘러싼 이조 전랑 임명 문제가 사림 분열의 직접적 계기가 되었습니다."}}], "open": {"q": "동인과 서인 같은 붕당은 오늘날의 정당과 비슷하다고 볼 수 있을까요? 공통점과 차이점을 한 가지씩 들어 답해 보세요.", "core": ["정치적·학문적 집단", "정책 비판과 토론", "현대 정당과의 차이"], "sample": "정치적 입장이 비슷한 사람들이 모여 정책을 논의하고 경쟁했다는 점에서는 정당과 비슷하다. 하지만 붕당은 학문적 계보와 지역적 관계의 영향이 컸다는 점에서 현대 정당과 차이가 있다."}, "reward": {"id": "joseon_4", "image": "assets/asset_020.png", "name": "조의제문", "icon": "📗", "slot": "item", "desc": "사림의 성장과 사화를 이해하는 자료인 조의제문"}}, {"id": 5, "icon": "🏫", "title": "성리학의 확산과 사회 변화", "subtitle": "학습지 주제 5", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "주세붕이 세운 조선 최초의 서원은?", "opts": ["백운동서원", "소수서원", "도산서원", "성균관"], "a": 0, "explain": "주세붕이 세운 백운동서원이 조선 최초의 서원이며 이후 소수서원으로 사액되었습니다.", "card": {"name": "백운동서원", "kind": "핵심 개념", "icon": "🏫", "desc": "주세붕이 세운 백운동서원이 조선 최초의 서원이며 이후 소수서원으로 사액되었습니다."}}, {"type": "개념 질문", "q": "향약의 성격으로 가장 적절한 것은?", "opts": ["향촌 자치 규약에 유교 윤리를 결합한 것", "중앙군의 군사 규칙", "왕실의 제사 절차", "과거 시험 교재"], "a": 0, "explain": "향약은 공동체적 생활 풍속에 유교 윤리를 더한 향촌 자치 규약이었습니다.", "card": {"name": "향약", "kind": "핵심 개념", "icon": "🤝", "desc": "향약은 공동체적 생활 풍속에 유교 윤리를 더한 향촌 자치 규약이었습니다."}}, {"type": "사실 질문", "q": "효자·충신·열녀의 이야기를 글과 그림으로 정리해 유교 윤리를 보급한 책은?", "opts": ["삼강행실도", "동국통감", "농사직설", "국조오례의"], "a": 0, "explain": "삼강행실도는 백성들이 이해하기 쉽게 글과 그림으로 유교 윤리를 전달했습니다.", "card": {"name": "삼강행실도", "kind": "핵심 개념", "icon": "🖼️", "desc": "삼강행실도는 백성들이 이해하기 쉽게 글과 그림으로 유교 윤리를 전달했습니다."}}, {"type": "사실 질문", "q": "관혼상제의 예법을 정리한 책은?", "opts": ["주자가례", "소학", "경국대전", "칠정산"], "a": 0, "explain": "주자가례는 가정에서 지켜야 할 관혼상제의 유교 예법을 정리한 책입니다.", "card": {"name": "주자가례", "kind": "핵심 개념", "icon": "📕", "desc": "주자가례는 가정에서 지켜야 할 관혼상제의 유교 예법을 정리한 책입니다."}}], "open": {"q": "향약은 마을 사람들을 돕기 위한 좋은 규칙이었을까요, 양반이 향촌을 통제하기 위한 도구였을까요? 두 측면을 모두 고려해 답해 보세요.", "core": ["상부상조", "유교 윤리 보급", "양반의 향촌 통제"], "sample": "향약은 재난 때 서로 돕고 유교적 생활 질서를 유지하는 기능이 있었지만, 양반이 향촌 사회를 주도하고 주민을 통제하는 수단으로 활용되기도 했으므로 두 성격을 함께 가졌다고 볼 수 있다."}, "reward": {"id": "joseon_5", "image": "assets/asset_021.png", "name": "소수서원 현판", "icon": "🏫", "slot": "item", "desc": "성리학 교육 기관을 보여 주는 소수서원 현판"}}, {"id": 6, "icon": "🔭", "title": "조선 전기의 문화와 과학기술, 예술의 발달", "subtitle": "학습지 주제 6", "theme": "학습지 미션", "questions": [{"type": "개념 질문", "q": "세종이 훈민정음을 창제한 가장 중요한 목적은?", "opts": ["백성이 쉽게 글을 읽고 자신의 말을 표현하게 하기 위해", "한자를 완전히 없애기 위해", "일본과 무역하기 위해", "양반만 사용할 문자를 만들기 위해"], "a": 0, "explain": "세종은 한자를 배우기 어려운 백성들도 쉽게 익혀 사용할 수 있는 문자를 만들고자 했습니다.", "card": {"name": "훈민정음", "kind": "핵심 개념", "icon": "🔤", "desc": "세종은 한자를 배우기 어려운 백성들도 쉽게 익혀 사용할 수 있는 문자를 만들고자 했습니다."}}, {"type": "개념 질문", "q": "조선왕조실록의 역사적 가치가 큰 이유로 가장 적절한 것은?", "opts": ["왕도 기록을 마음대로 열람하거나 고칠 수 없게 하여 기록의 객관성을 지키려 했기 때문에", "왕이 직접 모든 내용을 고쳤기 때문에", "외국인이 작성했기 때문에", "전쟁 기록만 남겼기 때문에"], "a": 0, "explain": "사관의 독립적인 기록을 보장해 객관성을 지키려 했다는 점이 실록의 중요한 특징입니다.", "card": {"name": "조선왕조실록", "kind": "핵심 개념", "icon": "📚", "desc": "사관의 독립적인 기록을 보장해 객관성을 지키려 했다는 점이 실록의 중요한 특징입니다."}}, {"type": "사실 질문", "q": "중국과 이슬람의 역법을 참고하여 한성을 기준으로 만든 역법서는?", "opts": ["칠정산", "농사직설", "향약집성방", "동국통감"], "a": 0, "explain": "칠정산은 한성을 기준으로 천체의 움직임을 계산한 조선의 역법서입니다.", "card": {"name": "칠정산", "kind": "핵심 개념", "icon": "🌌", "desc": "칠정산은 한성을 기준으로 천체의 움직임을 계산한 조선의 역법서입니다."}}, {"type": "사실 질문", "q": "우리나라 실정에 맞는 농사법을 정리한 책은?", "opts": ["농사직설", "향약집성방", "삼강행실도", "국조오례의"], "a": 0, "explain": "농사직설은 각 지역 농민들의 경험을 수집해 우리 풍토에 맞는 농사법을 정리했습니다.", "card": {"name": "농사직설", "kind": "핵심 개념", "icon": "🌾", "desc": "농사직설은 각 지역 농민들의 경험을 수집해 우리 풍토에 맞는 농사법을 정리했습니다."}}], "open": {"q": "왕의 통치를 조선왕조실록처럼 자세히 기록으로 남기는 것은 왕에게 부담이었을까요, 나라에 도움이 되었을까요? 근거와 함께 답해 보세요.", "core": ["왕의 통치 기록", "권력에 대한 견제", "후대의 역사 자료"], "sample": "왕에게는 자신의 행동이 기록된다는 점이 부담이 될 수 있지만, 잘못된 정치를 경계하게 하고 후대가 당시의 정치와 사회를 이해할 자료를 남긴다는 점에서 나라에 도움이 되었다고 볼 수 있다."}, "reward": {"id": "joseon_6", "image": "assets/asset_022.png", "name": "앙부일구", "icon": "🕰️", "slot": "item", "desc": "조선 전기 과학 기술을 보여 주는 해시계 앙부일구"}}, {"id": 7, "icon": "⚔️", "title": "왜란의 발발과 극복 및 동아시아 정세 변화", "subtitle": "학습지 주제 7", "theme": "학습지 미션", "questions": [{"type": "사실 질문", "q": "도요토미 히데요시가 조선에 요구한 침략 명분은?", "opts": ["명을 정복하러 가니 길을 빌려 달라는 정명가도", "청을 정벌하자는 북벌", "여진과 교역을 늘리자는 교린", "조공을 중단하자는 요구"], "a": 0, "explain": "도요토미 히데요시는 명을 정복하러 가겠다는 정명가도를 내세워 조선을 침략했습니다.", "card": {"name": "정명가도", "kind": "핵심 개념", "icon": "⚔️", "desc": "도요토미 히데요시는 명을 정복하러 가겠다는 정명가도를 내세워 조선을 침략했습니다."}}, {"type": "개념 질문", "q": "이순신이 이끈 수군의 승리가 중요했던 이유는?", "opts": ["전라도 곡창 지대를 지키고 일본군의 해상 보급로를 막았기 때문에", "일본 수도를 점령했기 때문에", "명군의 참전을 막았기 때문에", "한양을 바다로 옮겼기 때문에"], "a": 0, "explain": "수군은 전라도 곡창 지대를 지키고 일본군의 해상 보급로를 차단했습니다.", "card": {"name": "수군의 활약", "kind": "핵심 개념", "icon": "🚢", "desc": "수군은 전라도 곡창 지대를 지키고 일본군의 해상 보급로를 차단했습니다."}}, {"type": "사실 질문", "q": "휴전 협상 결렬 뒤 일본이 다시 침략한 전쟁은?", "opts": ["정유재란", "정묘호란", "병자호란", "을묘왜변"], "a": 0, "explain": "1597년 일본의 재침략을 정유재란이라고 합니다.", "card": {"name": "정유재란", "kind": "핵심 개념", "icon": "🔥", "desc": "1597년 일본의 재침략을 정유재란이라고 합니다."}}, {"type": "개념 질문", "q": "정유재란 때 조선이 첫 침략보다 더 효과적으로 대응할 수 있었던 이유는?", "opts": ["훈련도감 설치와 속오군 조직 등 군사력을 보강했기 때문에", "일본군이 조선 편이 되었기 때문에", "명과 국교를 끊었기 때문에", "군역을 폐지했기 때문에"], "a": 0, "explain": "휴전 기간에 훈련도감과 속오군을 정비하면서 전쟁 대응력이 높아졌습니다.", "card": {"name": "전쟁 대비", "kind": "핵심 개념", "icon": "🛡️", "desc": "휴전 기간에 훈련도감과 속오군을 정비하면서 전쟁 대응력이 높아졌습니다."}}], "open": {"q": "왜란 이후 조선이 일본과 다시 국교를 회복하고 통신사를 파견한 것은 옳은 선택이었을까요? 재침략 방지와 동아시아 정세를 근거로 답해 보세요.", "core": ["평화 관계", "재침략 방지", "여진의 성장", "문화 교류"], "sample": "계속 전쟁 상태를 유지하기보다 일본과 평화 관계를 회복하면 재침략 가능성을 낮추고 북쪽에서 성장하는 여진에도 대비할 수 있었으며, 통신사를 통해 문화 교류도 이어갈 수 있었다는 점에서 현실적인 선택으로 볼 수 있다."}, "reward": {"id": "joseon_7", "image": "assets/asset_023.png", "name": "난중일기", "icon": "🚩", "slot": "item", "desc": "임진왜란을 기록한 이순신의 난중일기"}}, {"id": 8, "icon": "🏔️", "title": "동아시아의 정세 변화 및 호란의 발발과 영향", "subtitle": "학습지 주제 8", "theme": "학습지 미션", "questions": [{"type": "개념 질문", "q": "광해군이 명과 후금 사이에서 추진한 외교 정책은?", "opts": ["중립 외교", "친명배금", "북벌 정책", "사대교린"], "a": 0, "explain": "광해군은 명의 요청을 수용하면서도 후금과 직접 충돌을 피하려는 중립 외교를 추진했습니다.", "card": {"name": "광해군의 중립외교", "kind": "핵심 개념", "icon": "⚖️", "desc": "광해군은 명의 요청을 수용하면서도 후금과 직접 충돌을 피하려는 중립 외교를 추진했습니다."}}, {"type": "사실 질문", "q": "인조와 서인 정권이 광해군의 중립 외교 대신 추진한 정책은?", "opts": ["친명배금", "북학", "중립 외교", "통신사 파견"], "a": 0, "explain": "서인 정권은 명과의 의리를 중시하고 후금을 배척하는 친명배금 정책을 추진했습니다.", "card": {"name": "친명배금", "kind": "핵심 개념", "icon": "📜", "desc": "서인 정권은 명과의 의리를 중시하고 후금을 배척하는 친명배금 정책을 추진했습니다."}}, {"type": "사실 질문", "q": "병자호란 때 인조가 들어가 항전한 곳은?", "opts": ["남한산성", "강화도", "행주산성", "진주성"], "a": 0, "explain": "청군의 빠른 진격으로 강화도에 가지 못한 인조는 남한산성에서 항전했습니다.", "card": {"name": "남한산성", "kind": "핵심 개념", "icon": "🏔️", "desc": "청군의 빠른 진격으로 강화도에 가지 못한 인조는 남한산성에서 항전했습니다."}}, {"type": "개념 질문", "q": "청의 발달한 문물을 배워 부국강병을 이루자고 주장한 것은?", "opts": ["북학론", "북벌론", "척화론", "주화론"], "a": 0, "explain": "북학론은 현실적으로 강해진 청의 문물을 배워 조선을 발전시키자는 주장이었습니다.", "card": {"name": "북학론", "kind": "핵심 개념", "icon": "📖", "desc": "북학론은 현실적으로 강해진 청의 문물을 배워 조선을 발전시키자는 주장이었습니다."}}], "open": {"q": "청이 군신 관계를 요구했을 때 조선은 주화론을 따라야 했을까요, 척화론을 따라야 했을까요? 당시 조선과 청의 군사력과 명에 대한 의리를 함께 고려해 답해 보세요.", "core": ["주화론", "척화론", "청의 군사력", "명과의 의리", "국가와 백성의 안전"], "sample": "예를 들어 주화론을 따르는 것이 현실적이었다고 볼 수 있다. 명과의 의리를 중시하는 척화론에도 명분은 있었지만, 당시 청의 군사력이 매우 강했고 전쟁이 백성에게 큰 피해를 줄 수 있었기 때문이다. 반대로 척화론을 선택했다면 자주성과 의리를 지키려는 점을 근거로 제시할 수 있다."}, "reward": {"id": "joseon_8", "image": "assets/asset_024.png", "name": "삼전도비", "icon": "📖", "slot": "item", "desc": "병자호란의 굴욕을 전하는 삼전도비"}}], "ready": true}, "joseon_change": {"id": "joseon_change", "name": "5. 조선 사회의 변동", "seal": "조선 후기", "chapter": "5. 조선 사회의 변동", "title": "조선 후기 탐험 준비 중", "desc": "학습지가 완성되면 미션을 연결합니다.", "note": "현재는 조선 전기까지 완성되었습니다.", "ranks": [], "stages": [], "ready": false}, "modern": {"id": "modern", "name": "6. 근현대 사회의 전개", "seal": "근현대", "chapter": "6. 근현대 사회의 전개", "title": "근현대 탐험 준비 중", "desc": "학습지가 완성되면 미션을 연결합니다.", "note": "현재는 조선 전기까지 완성되었습니다.", "ranks": [], "stages": [], "ready": false}};
+const PROFILE_KEY='historyTimeExplorersProfileV6';
+const APP_KEY='historyTimeExplorersAppV6';
+const ERA_KEY_PREFIX='historyTimeExplorersEraV6:';
+const AVATAR_FILE_STEPS=[1,2,4,6];
+const EQUIP_SLOTS=['slot1','slot2','slot3','slot4','slot5','slot6'];
+const SLOT_LABELS={slot1:'아이템 1',slot2:'아이템 2',slot3:'아이템 3',slot4:'아이템 4',slot5:'아이템 5',slot6:'아이템 6'};
+const eraDefault=()=>({xp:0,completedStages:[],unlockedStage:1,cards:[],wrong:[],earned:[],answers:{},items:[],bonusCleared:[],equippedSlots:{slot1:null,slot2:null,slot3:null,slot4:null,slot5:null,slot6:null},visibleSlots:['slot1','slot2','slot3']});
+function normalizeEquipState(s){
+  if(!Array.isArray(s.bonusCleared))s.bonusCleared=[];
+  const old=s.equippedSlots||{};
+  const next={slot1:null,slot2:null,slot3:null,slot4:null,slot5:null,slot6:null};
+  const carried=[];
+  ['slot1','slot2','slot3','slot4','slot5','slot6','hand','badge','side','back'].forEach(k=>{
+    if(old[k]&&!carried.includes(old[k]))carried.push(old[k]);
+  });
+  if(s.equipped&&!carried.includes(s.equipped))carried.push(s.equipped);
+  carried.slice(0,6).forEach((id,i)=>next['slot'+(i+1)]=id);
+  s.equippedSlots=next;
+  delete s.equipped;
+
+  let visible=Array.isArray(s.visibleSlots)?s.visibleSlots.filter(v=>EQUIP_SLOTS.includes(v)):[];
+  visible=visible.filter((slot,idx)=>visible.indexOf(slot)===idx);
+  if(visible.length===0){
+    visible=EQUIP_SLOTS.filter(slot=>next[slot]).slice(0,3);
+    if(visible.length<3){
+      EQUIP_SLOTS.forEach(slot=>{if(visible.length<3 && !visible.includes(slot))visible.push(slot)});
+    }
+  }
+  s.visibleSlots=visible.slice(0,3);
+  // 비어 있는 슬롯이 화면 표시로 선택되어 있으면 가능한 다른 장착 슬롯으로 보정
+  s.visibleSlots=s.visibleSlots.map(slot=>next[slot]?slot:null);
+  const fillCandidates=EQUIP_SLOTS.filter(slot=>next[slot] && !s.visibleSlots.includes(slot));
+  s.visibleSlots=s.visibleSlots.map(slot=>slot||fillCandidates.shift()||null).filter(Boolean).slice(0,3);
+  while(s.visibleSlots.length<3){
+    const candidate=EQUIP_SLOTS.find(slot=>!s.visibleSlots.includes(slot));
+    if(!candidate)break;
+    s.visibleSlots.push(candidate);
+  }
+  return s;
+}
+function isVisibleSlot(slot,s=state){s=normalizeEquipState(s);return s.visibleSlots.includes(slot)}
+function toggleVisibleSlot(slot){
+  state=normalizeEquipState(state);
+  const current=[...state.visibleSlots];
+  const on=current.includes(slot);
+  if(on){
+    if(current.length<=1){toast('최소 1개의 화면 표시 슬롯은 유지됩니다.');return}
+    state.visibleSlots=current.filter(v=>v!==slot);
+    toast('화면 표시에서 제외했습니다.');
+  }else{
+    if(current.length>=3) current.shift();
+    current.push(slot);
+    state.visibleSlots=current;
+    toast('대표 표시 아이템으로 선택했습니다.');
+  }
+  saveEra();
+}
+let profile=loadJSON(PROFILE_KEY,null),appState=loadJSON(APP_KEY,{lastEra:null}),activeEraId=appState.lastEra&&ERAS[appState.lastEra]?.ready?appState.lastEra:null;
+let state=activeEraId?loadEra(activeEraId):eraDefault(),selectedCharacter=profile?.character||null,changingCharacter=false,currentStage=null,currentIndex=0,stageScore=0,stageWrong=0,answered=false,teacherPreview=false,previewRankIndex=null,eraWasCompleteBeforeStage=false;
+function loadJSON(k,f){try{const v=JSON.parse(localStorage.getItem(k)||'null');return v??f}catch(e){return f}}
+function saveJSON(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function loadEra(id){return normalizeEquipState(Object.assign(eraDefault(),loadJSON(ERA_KEY_PREFIX+id,{})))}
+function saveEra(){if(activeEraId){saveJSON(ERA_KEY_PREFIX+activeEraId,state);renderMini();}}
+function era(){return ERAS[activeEraId]} function stages(){return era().stages} function ranks(){return era().ranks}
+const AVATAR_DATA={"heecheol_1": "assets/asset_025.png", "heecheol_2": "assets/asset_026.png", "heecheol_3": "assets/asset_027.png", "heecheol_4": "assets/asset_028.png", "heecheol_5": "assets/asset_029.png", "heecheol_6": "assets/asset_030.png", "miyoung_1": "assets/asset_031.png", "miyoung_2": "assets/asset_032.png", "miyoung_3": "assets/asset_033.png", "miyoung_4": "assets/asset_034.png", "miyoung_5": "assets/asset_035.png", "miyoung_6": "assets/asset_036.png", "seonggyu_1": "assets/asset_037.png", "seonggyu_2": "assets/asset_038.png", "seonggyu_3": "assets/asset_039.png", "seonggyu_4": "assets/asset_040.png", "seonggyu_5": "assets/asset_041.png", "seonggyu_6": "assets/asset_042.png", "yunseo_1": "assets/asset_043.png", "yunseo_2": "assets/asset_044.png", "yunseo_3": "assets/asset_045.png", "yunseo_4": "assets/asset_046.png", "yunseo_5": "assets/asset_047.png", "yunseo_6": "assets/asset_048.png"};
+function avatarPath(charId,rankIndex){const n=AVATAR_FILE_STEPS[Math.max(0,Math.min(3,rankIndex))];return AVATAR_DATA[`${charId}_${n}`]||'';}
+function getCharacter(){return characters.find(c=>c.id===profile?.character)}
+function rankThresholds(){const n=stages().length; return [0,Math.ceil(n/3),Math.ceil(2*n/3),n];}
+function getRankIndex(){if(!activeEraId||!era().ready)return 0;const d=state.completedStages.length,t=rankThresholds();let i=0;t.forEach((x,idx)=>{if(d>=x)i=idx});return Math.min(3,i)}
+function nextRankInfo(){const idx=getRankIndex(),t=rankThresholds();if(idx>=3)return null;return {rank:ranks()[idx+1],need:t[idx+1]-state.completedStages.length,total:t[idx+1]}}
+function totalExp(){return ERA_ORDER.reduce((s,id)=>s+(ERAS[id].ready?loadEra(id).xp:0),0)}
+function totalCards(){return ERA_ORDER.reduce((s,id)=>s+(ERAS[id].ready?loadEra(id).cards.length:0),0)}
+function totalItems(){return ERA_ORDER.reduce((s,id)=>s+(ERAS[id].ready?loadEra(id).items.length:0),0)}
+function eraComplete(id){const e=ERAS[id];if(!e?.ready)return false;const s=loadEra(id);return s.completedStages.length===e.stages.length}
+function completedEraCount(){return ERA_ORDER.filter(id=>eraComplete(id)).length}
+function eraIndex(id){return ERA_ORDER.indexOf(id)}
+function eraUnlocked(id){const e=ERAS[id];if(!e?.ready)return false;const idx=eraIndex(id);if(idx<=0)return true;const prev=ERAS[ERA_ORDER[idx-1]];return prev?.ready&&eraComplete(prev.id)}
+function nextEraId(id){const idx=eraIndex(id);const next=ERA_ORDER[idx+1];return next&&ERAS[next]?.ready?next:null}
+function toast(msg){const el=document.querySelector('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000)}
+function show(name){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelector('#screen-'+name)?.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});document.querySelector('#era-shortcut').classList.toggle('hidden',!profile||name==='eras'||name==='character');if(name==='home')renderHome();if(name==='character')renderCharacters();if(name==='eras')renderEras();if(name==='map')renderMap();if(name==='collection')renderCollection();if(name==='wrong')renderWrong();if(name==='wardrobe')renderWardrobe();}
+function allRewardItems(){return Object.values(ERAS).filter(e=>e.ready).flatMap(e=>e.stages.map(s=>s.reward))}
+const ITEM_SCORE={treasure:50,national:100};
+function finalStageId(eraId){
+  const e=ERAS[eraId];
+  return e&&e.ready&&e.stages?.length?e.stages[e.stages.length-1].id:null;
+}
+function itemGrade(it){
+  if(!it)return 'treasure';
+  for(const [eraId,e] of Object.entries(ERAS)){
+    if(!e.ready)continue;
+    const st=e.stages.find(s=>s.reward?.id===it.id);
+    if(st)return st.id===finalStageId(eraId)?'national':'treasure';
+  }
+  return 'treasure';
+}
+function itemGradeLabel(it){return itemGrade(it)==='national'?'국보 등급':'보물 등급'}
+function itemPower(it){return ITEM_SCORE[itemGrade(it)]||0}
+function completedBaseThinking(s=state){
+  if(!activeEraId||!era()?.ready)return 0;
+  const total=Math.max(1,stages().length);
+  const done=Math.min(total,s.completedStages.length);
+  return Math.round(1000*done/total);
+}
+function equippedThinkingBonus(s=state){
+  s=normalizeEquipState(s);
+  const all=allRewardItems();
+  return EQUIP_SLOTS.reduce((sum,slot)=>{
+    const it=all.find(x=>x.id===s.equippedSlots?.[slot]);
+    return sum+(it?itemPower(it):0);
+  },0);
+}
+function historicalThinking(s=state){return completedBaseThinking(s)+equippedThinkingBonus(s)}
+function thinkingMarkup(s=state){
+  const base=completedBaseThinking(s),bonus=equippedThinkingBonus(s),total=base+bonus;
+  const pct=Math.min(100,Math.round(base/10));
+  return `<div class="thinking-power">
+    <div class="thinking-power-top"><span>역사적 사고력</span><strong>${total.toLocaleString()}</strong></div>
+    <div class="thinking-power-bar"><i style="width:${pct}%"></i></div>
+    <div class="thinking-power-breakdown"><span>기본 ${base.toLocaleString()} / 1,000</span><span>아이템 +${bonus.toLocaleString()}</span></div>
+  </div>`;
+}
+
+function itemMarkup(it,cls=''){return `<img class="item-art ${cls}" src="${it.image}" alt="${it.name}" title="${it.name}">`}
+function equippedMarkup(s=state){
+  s=normalizeEquipState(s);
+  const all=allRewardItems();
+  const visible=s.visibleSlots.map(slot=>s.equippedSlots?.[slot]).filter(Boolean).slice(0,3);
+  return visible.map((id,idx)=>{
+    const it=all.find(x=>x.id===id);
+    return it?`<span class="avatar-item item-slot${idx+1}" title="대표 표시 아이템 ${idx+1} · ${it.name}">${itemMarkup(it)}</span>`:'';
+  }).join('');
+}
+function avatarBox(src,cls='',showPower=true){
+  const power=(showPower&&profile&&activeEraId)?thinkingMarkup(state):'';
+  return `<div class="avatar-with-power ${showPower?'':'avatar-only'}">${power}<div class="avatar-composite ${cls}"><img src="${src}" alt=""><span class="equipped-layer">${equippedMarkup()}</span></div></div>`;
+}
+function renderHome(){const actions=document.querySelector('#home-actions'),box=document.querySelector('#home-profile');if(!profile){actions.innerHTML='<button class="primary big" id="home-start">캐릭터 선택하고 시작하기 →</button><span>학습지 한 주제가 앱의 미션 하나입니다.</span>';box.innerHTML='<div class="home-profile-placeholder"><div class="mission-seal">역사</div><h2>나의 시간탐험대원을 선택하세요</h2><p>아바타는 4단계로 성장합니다. 기본 미션을 모두 끝내면 국보 등급 아이템 1개를 받고, 추가 도전 아이템은 보물 등급입니다. 최대 6개 장착, 대표 3개 화면 표시가 가능합니다.</p></div>';document.querySelector('#home-start').onclick=()=>show('character')}else{const c=getCharacter();let avatar=avatarPath(c.id,0),label='시대 선택 전';if(activeEraId){state=loadEra(activeEraId);avatar=avatarPath(c.id,getRankIndex());label=`${ERAS[activeEraId].name} · ${ranks()[getRankIndex()].name}`;}actions.innerHTML='<button class="primary big" id="home-continue">이어서 탐험하기 →</button><button class="ghost-btn" id="home-era">대단원 선택</button>';const equippedNow=activeEraId?EQUIP_SLOTS.map((slot,i)=>{const id=state.equippedSlots?.[slot],it=allRewardItems().find(x=>x.id===id),vis=isVisibleSlot(slot,state);return `<button class="home-item-slot ${it?'filled':''} ${vis&&it?'visible-selected':''}" data-home-slot="${slot}"><span>${i+1}</span>${it?itemMarkup(it,'home-slot-art'):'<i>+</i>'}<small>${it?it.name:'비어 있음'}</small>${vis&&it?'<em>표시중</em>':''}</button>`}).join(''):'<div class="home-item-empty">대단원을 선택하면 아이템 슬롯이 활성화됩니다.</div>';
+box.innerHTML=`<div class="profile-live">${avatarBox(avatar)}<div><span class="eyebrow">MY EXPLORER</span><h2>${c.name}</h2><p>${c.role} · ${c.tag}</p><p><b>${label}</b></p><div class="profile-stat-row"><div class="profile-stat"><b>${totalExp()}</b><span>총 경험치</span></div><div class="profile-stat"><b>${totalItems()}</b><span>꾸미기 아이템</span></div><div class="profile-stat"><b>${completedEraCount()}</b><span>완료 대단원</span></div></div><div class="home-item-window"><div class="home-item-head"><b>착용 아이템</b><span>장착 최대 6개 · 보물 +50 · 국보 +100</span></div><div class="home-item-grid">${equippedNow}</div></div></div></div>`;
+document.querySelectorAll('[data-home-slot]').forEach(b=>b.onclick=()=>show('wardrobe'));document.querySelector('#home-continue').onclick=()=>activeEraId?openEra(activeEraId):show('eras');document.querySelector('#home-era').onclick=()=>show('eras')}renderMini()}
+function renderCharacters(){const grid=document.querySelector('#character-grid');grid.innerHTML=characters.map(c=>`<article class="character-card ${selectedCharacter===c.id?'selected':''}" data-char="${c.id}"><div class="character-image"><img src="${avatarPath(c.id,0)}"></div><div class="character-info"><h3>${c.name}</h3><b>${c.role} · ${c.tag}</b><p>${c.desc}</p><div class="character-quote">“${c.quote}”</div></div></article>`).join('');grid.querySelectorAll('.character-card').forEach(x=>x.onclick=()=>{selectedCharacter=x.dataset.char;renderCharacters();document.querySelector('#start-profile-btn').disabled=false});document.querySelector('#start-profile-btn').disabled=!selectedCharacter;document.querySelector('#start-profile-btn').textContent=changingCharacter?'이 캐릭터로 변경하기 →':'이 캐릭터로 시작하기 →';document.querySelector('#cancel-character-btn').classList.toggle('hidden',!changingCharacter)}
+function saveProfileChoice(){if(!selectedCharacter)return;profile={character:selectedCharacter,createdAt:profile?.createdAt||Date.now()};saveJSON(PROFILE_KEY,profile);changingCharacter=false;toast('캐릭터가 저장되었습니다.');show('eras')}
+function beginCharacterChange(){changingCharacter=true;selectedCharacter=profile?.character||null;show('character')}
+function renderEras(){if(!profile)return show('character');const grid=document.querySelector('#era-grid');grid.innerHTML=ERA_ORDER.map((id,idx)=>{const e=ERAS[id];if(!e.ready)return `<button class="era-card era-locked" disabled><span class="unit-no">대단원 ${idx+1}</span><span class="era-action">🛠 준비 중</span><div class="era-seal">${e.seal}</div><h3>${e.name}</h3><p>${e.desc}</p><div class="lock-help">현재 버전은 조선 전기까지 완성되었습니다.</div></button>`;const s=loadEra(id),done=s.completedStages.length,isDone=done===e.stages.length,unlocked=eraUnlocked(id),locked=!unlocked&&!teacherPreview,pct=Math.round(done/e.stages.length*100);const oldActive=activeEraId;activeEraId=id;state=s;const ri=getRankIndex();activeEraId=oldActive;state=oldActive?loadEra(oldActive):eraDefault();return `<button class="era-card ${id} ${locked?'era-locked':''} ${isDone?'era-complete':''}" data-era="${id}" ${locked?'disabled':''}><span class="unit-no">대단원 ${idx+1}</span><span class="era-action">${locked?'🔒 이전 대단원 완료 필요':isDone?'✅ 복습하기':'탐험하기 →'}</span><div class="era-seal">${e.seal}</div><h3>${e.name}</h3><p>${e.desc}</p><div class="era-progress"><div class="era-progress-head"><span>학습지 미션 진행도</span><b>${done}/${e.stages.length}</b></div><div class="era-progress-track"><i style="width:${pct}%"></i></div></div><div class="era-meta"><span>4단계 성장</span><span>아이템 ${s.items.length}개</span></div></button>`}).join('');grid.querySelectorAll('.era-card:not(:disabled)[data-era]').forEach(b=>b.onclick=()=>openEra(b.dataset.era));document.querySelector('#global-summary').innerHTML=`<div class="summary-item"><span>나의 캐릭터</span><b>${getCharacter().name}</b></div><div class="summary-item"><span>완료 미션</span><b>${ERA_ORDER.reduce((n,id)=>n+(ERAS[id].ready?loadEra(id).completedStages.length:0),0)}</b></div><div class="summary-item"><span>꾸미기 아이템</span><b>${totalItems()}개</b></div><div class="summary-item"><span>완료 대단원</span><b>${completedEraCount()} / 4</b></div>`;const pv=document.querySelector('#teacher-preview-btn');if(pv)pv.textContent=teacherPreview?'교사용 미리보기 종료':'교사용 전체 미션 미리보기';document.querySelector('#teacher-preview-banner')?.classList.toggle('hidden',!teacherPreview)}
+function openEra(id){if(!ERAS[id]?.ready){toast('아직 학습지가 준비되지 않은 대단원입니다.');return}if(!teacherPreview&&!eraUnlocked(id)){toast('앞 대단원 탐험을 먼저 완료하세요.');return}activeEraId=id;appState.lastEra=id;saveJSON(APP_KEY,appState);state=loadEra(id);previewRankIndex=null;show('map')}
+function renderMini(){const mini=document.querySelector('#player-mini');if(!profile){mini.classList.add('hidden');return}const c=getCharacter();let idx=0,label='탐험대원';if(activeEraId&&ERAS[activeEraId]?.ready){state=loadEra(activeEraId);idx=getRankIndex();label=`${ERAS[activeEraId].name} · ${ranks()[idx].name}`;}mini.classList.remove('hidden');mini.innerHTML=`${avatarBox(avatarPath(c.id,idx),'mini-composite',false)}<div><b>${c.name}</b><span>${label}</span></div>`}
+function renderMap(){if(!profile)return show('character');if(!activeEraId)return show('eras');state=loadEra(activeEraId);const e=era(),c=getCharacter(),actual=getRankIndex(),idx=previewRankIndex===null?actual:previewRankIndex,rank=ranks()[idx],next=nextRankInfo();document.querySelector('#chapter-label').textContent=e.chapter;document.querySelector('#chapter-title').textContent=e.title;document.querySelector('#chapter-desc').textContent=e.desc;document.querySelector('#historical-note').textContent=e.note;document.querySelector('#status-avatar').src=avatarPath(c.id,idx);document.querySelector('#status-name').textContent=c.name;document.querySelector('#status-role').textContent=`${c.role} · ${c.tag}`;document.querySelector('#rank-name').textContent=rank.name;document.querySelector('#rank-message').textContent=rank.note;document.querySelector('#preview-chip').classList.toggle('hidden',previewRankIndex===null);document.querySelector('#clear-preview').classList.toggle('hidden',previewRankIndex===null);const done=state.completedStages.length;document.querySelector('#xp-text').textContent=`${done} / ${stages().length} 미션`;document.querySelector('#xp-fill').style.width=`${Math.round(done/stages().length*100)}%`;document.querySelector('#next-rank-text').textContent=next?`다음 성장까지 미션 ${next.need}개`:'최종 4단계에 도달했습니다!';document.querySelector('#total-exp').textContent=`경험치 ${state.xp} EXP · 아이템 ${state.items.length}개`;const strip=document.querySelector('#growth-strip');strip.innerHTML=ranks().map((r,i)=>`<button class="growth-step ${i<actual?'reached':''} ${i>actual?'future':''} ${i===idx?'current':''}" data-preview="${i}"><img src="${avatarPath(c.id,i)}"><b>${i+1}단계</b><small>${r.name}</small></button>`).join('');strip.querySelectorAll('.growth-step').forEach(b=>b.onclick=()=>{previewRankIndex=Number(b.dataset.preview);renderMap()});document.querySelector('.growth-head span').textContent='아바타는 4단계로 성장합니다. 성장 사이의 미션에서는 시대 아이템을 얻습니다.';document.querySelector('#card-count').textContent=state.cards.length;document.querySelector('#wrong-count').textContent=state.wrong.length;document.querySelector('#item-count')&&(document.querySelector('#item-count').textContent=state.items.length);const eraDone=eraComplete(activeEraId);const banner=document.querySelector('#review-mode-banner');banner.classList.toggle('hidden',!eraDone&&!teacherPreview);banner.textContent=teacherPreview?'👩‍🏫 교사용 미리보기: 기록은 저장되지 않습니다.':eraDone?'✅ 대단원 탐험 완료 · 모든 학습지 미션을 복습할 수 있습니다.':'';const map=document.querySelector('#stage-map');map.innerHTML=stages().map(s=>{
+  const locked=!eraDone&&!teacherPreview&&s.id>state.unlockedStage,
+        done=state.completedStages.includes(s.id),
+        ans=state.answers[s.id],
+        hasBonus=hasBonusChallenge(activeEraId,s.id),
+        bonusEarned=hasBonus&&(state.bonusCleared.includes(s.id)||state.items.includes(s.reward.id));
+  const bonusMarkup=done&&hasBonus
+    ? (bonusEarned
+        ? `<span class="bonus-earned">✅ 추가 도전 완료 · ${s.reward.name} 획득</span>`
+        : `<span class="bonus-challenge-btn" role="button" tabindex="0" data-bonus-stage="${s.id}">🎁 추가 문제 도전 · 보물 아이템 받기 →</span>`)
+    : '';
+  const rewardLabel=isStandardRewardStage(activeEraId,s.id)
+    ? `${itemGradeLabel(s.reward)} 보상`
+    : hasBonus
+      ? `추가 도전 보상`
+      : `보상`;
+  return `<button class="stage-node ${locked?'locked':''} ${done?'done':''}" data-stage="${s.id}" ${locked?'disabled':''}>
+    <span class="stage-num">학습지 주제 ${s.id}</span>
+    <div class="stage-icon">${s.icon}</div>
+    <h3>${s.title}</h3>
+    <p>${s.subtitle}</p>
+    <div class="stage-foot"><span>선다형 4 + 최종 질문 1</span><span>${locked?'🔒 잠김':done?'✅ 복습하기':'탐험 가능 →'}</span></div>
+    <div class="mission-reward">${itemMarkup(s.reward,'reward-thumb')}<span>${rewardLabel} <b>${s.reward.name}</b></span></div>
+    ${bonusMarkup}
+  </button>`;
+}).join('');
+map.querySelectorAll('.stage-node:not(.locked)').forEach(b=>b.onclick=()=>startStage(Number(b.dataset.stage)));
+map.querySelectorAll('[data-bonus-stage]').forEach(el=>{
+  el.onclick=(ev)=>{ev.preventDefault();ev.stopPropagation();startBonusChallenge(Number(el.dataset.bonusStage));};
+  el.onkeydown=(ev)=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();ev.stopPropagation();startBonusChallenge(Number(el.dataset.bonusStage));}};
+});
+updateEquippedLayer();renderMini()}
+function updateEquippedLayer(){const frame=document.querySelector('.avatar-frame');if(!frame)return;frame.querySelector('.equipped-layer')?.remove();const span=document.createElement('span');span.className='equipped-layer';span.innerHTML=equippedMarkup();frame.appendChild(span)}
+function clearPreview(){previewRankIndex=null;renderMap()}
+function startStage(id){currentStage=stages().find(s=>s.id===id);currentIndex=0;stageScore=0;stageWrong=0;answered=false;eraWasCompleteBeforeStage=eraComplete(activeEraId);show('quiz');renderQuestion()}
+function renderQuizPlayer(){
+  const c=getCharacter(),idx=getRankIndex();
+  const avatarSrc=avatarPath(c.id,idx);
+  document.querySelector('#quiz-player').innerHTML=`
+    <div class="quiz-player-stack">
+      ${thinkingMarkup(state)}
+      <div class="quiz-player-inner">
+        <div class="quiz-avatar-mini"><img src="${avatarSrc}" alt="${c.name}"></div>
+        <div class="quiz-speaker-meta"><b>${c.name}</b><span>${ranks()[idx].name}</span></div>
+      </div>
+    </div>`;
+}
+function renderQuestion(){answered=false;renderQuizPlayer();const q=currentStage.questions[currentIndex];document.querySelector('#quiz-stage-label').textContent=`${era().name} · 학습지 주제 ${currentStage.id} · ${currentStage.title}`;document.querySelector('#quiz-progress').textContent=`${currentIndex+1} / 4`;document.querySelector('#question-type').textContent=q.type;document.querySelector('#question-text').textContent=q.q;const options=document.querySelector('#options');options.innerHTML=q.opts.map((o,i)=>`<button class="option" data-i="${i}"><b>${i+1}.</b> ${o}</button>`).join('');options.querySelectorAll('.option').forEach(b=>b.onclick=()=>answer(Number(b.dataset.i)));document.querySelector('#feedback').className='feedback hidden';document.querySelector('#next-question').classList.add('hidden')}
+function questionKey(){return `${activeEraId}:${currentStage.id}:${currentIndex}`}
+function answer(i){if(answered)return;answered=true;const q=currentStage.questions[currentIndex],buttons=[...document.querySelectorAll('.option')];buttons.forEach((b,idx)=>{b.disabled=true;if(idx===q.a)b.classList.add('correct');if(idx===i&&i!==q.a)b.classList.add('wrong')});const good=i===q.a,fb=document.querySelector('#feedback'),key=questionKey();if(good){stageScore++;const first=!state.earned.includes(key);if(!teacherPreview){if(first){state.earned.push(key);state.xp+=50}if(!state.cards.includes(q.card.name))state.cards.push(q.card.name);state.wrong=state.wrong.filter(w=>w.key!==key);saveEra()}fb.className='feedback good';fb.innerHTML=`<b>✅ 정답입니다! ${teacherPreview?'':first?'+50 EXP':'복습 문제'}</b><br>${q.explain}`;}else{stageWrong++;if(!teacherPreview){if(!state.wrong.some(w=>w.key===key))state.wrong.push({key,stage:currentStage.title,q:q.q,answer:q.opts[q.a],explain:q.explain});saveEra()}fb.className='feedback bad';fb.innerHTML=`<b>🔎 역사의 단서 발견</b><br>${q.explain}`;}document.querySelector('#next-question').textContent=currentIndex===3?'선다형 결과 확인 →':'다음 문제 →';document.querySelector('#next-question').classList.remove('hidden')}
+function nextQuestion(){if(currentIndex<3){currentIndex++;renderQuestion()}else{if(stageScore>=3)showOpenQuestion();else finishStage(false)}}
+function showOpenQuestion(){show('open');openReviewed=false;const oq=currentStage.open;document.querySelector('#open-stage-label').textContent=`학습지 주제 ${currentStage.id} · 최종 질문`;document.querySelector('#open-question-text').textContent=oq.q;const ta=document.querySelector('#open-answer');ta.value=state.answers[currentStage.id]?.text||'';document.querySelector('#open-guide').classList.add('hidden');document.querySelector('#open-save').textContent='내 답안 저장하고 핵심 내용 확인 →'}
+function submitOpenAnswer(){const ta=document.querySelector('#open-answer');const text=ta.value.trim();if(text.length<5){toast('자신의 생각을 한 문장 이상 적어 주세요.');return}const oq=currentStage.open;if(!openReviewed){document.querySelector('#open-guide').classList.remove('hidden');document.querySelector('#open-core').textContent=oq.core.join(' · ');document.querySelector('#open-sample').textContent=oq.sample;if(!teacherPreview){state.answers[currentStage.id]={text,at:Date.now()};saveEra()}openReviewed=true;document.querySelector('#open-save').textContent='핵심 내용 확인 완료 · 미션 완료하기 →';document.querySelector('#open-guide').scrollIntoView({behavior:'smooth',block:'center'});toast('핵심 요소와 예시 답안을 확인한 뒤 미션 완료를 눌러 주세요.');return}if(!teacherPreview){state.answers[currentStage.id]={text,at:Date.now()};saveEra()}finishStage(true)}
+function rewardStage(){
+  if(teacherPreview)return false;
+  if(!isStandardRewardStage(activeEraId,currentStage.id))return false;
+  const r=currentStage.reward;
+  if(!state.items.includes(r.id)){state.items.push(r.id);toast(`${itemGradeLabel(r)} ‘${r.name}’ 획득! 장착 시 사고력 +${itemPower(r)}`);return true}
+  return false;
+}
+function finishStage(openDone=false){const pass=stageScore>=3&&openDone;const already=state.completedStages.includes(currentStage.id),before=getRankIndex();let regularReward=false;if(!teacherPreview&&pass){if(!already)state.completedStages.push(currentStage.id);state.unlockedStage=Math.max(state.unlockedStage,Math.min(stages().length,currentStage.id+1));regularReward=rewardStage();saveEra()}const after=getRankIndex(),newlyCompleted=!teacherPreview&&eraComplete(activeEraId)&&!eraWasCompleteBeforeStage,nextId=newlyCompleted?nextEraId(activeEraId):null,c=getCharacter();document.querySelector('#result-avatar').src=avatarPath(c.id,after);document.querySelector('#result-title').textContent=teacherPreview?`${currentStage.title} 미리보기 완료`:pass?`${currentStage.title} 미션 완료!`:`${currentStage.title} 재도전 필요`;document.querySelector('#result-summary').textContent=teacherPreview?'교사용 미리보기에서는 기록을 저장하지 않습니다.':pass?`선다형 확인과 최종 질문 작성을 마쳤습니다.${regularReward?` ‘${currentStage.reward.name}’ 아이템을 획득했습니다.`:hasBonusChallenge(activeEraId,currentStage.id)?' 보너스 아이템 문제에 도전할 수 있습니다.':''}${after>before?' 아바타도 새로운 단계로 성장했습니다!':''}`:'선다형 4문항 중 3문항 이상 맞히면 최종 질문이 열립니다. 오답을 확인하고 다시 도전해 보세요.';document.querySelector('#result-stats').innerHTML=`<div><span>선다형 정답</span><b>${stageScore}/4</b></div><div><span>최종 질문</span><b>${pass?'작성 완료':'미완료'}</b></div><div><span>아이템</span><b>${state.items.length}개</b></div>`;document.querySelector('#promotion-area').innerHTML=pass&&regularReward?`<div class="promotion reward-promotion">${itemMarkup(currentStage.reward,'promotion-item')}<div><span class="grade-badge grade-${itemGrade(currentStage.reward)}">${itemGradeLabel(currentStage.reward)}</span> <b>${currentStage.reward.name}</b><br><small>${currentStage.reward.desc} · 장착 시 사고력 +${itemPower(currentStage.reward)}</small></div></div>`:pass&&hasBonusChallenge(activeEraId,currentStage.id)?`<div class="promotion bonus-promotion"><div><b>🎁 보너스 아이템 도전 가능</b><br><small>대단원 화면에서 추가 문제를 맞히면 보물 등급 ‘${currentStage.reward.name}’을 얻을 수 있습니다.</small></div></div>`:'';if(!teacherPreview&&pass&&after>before)setTimeout(()=>showPromotion(before,after),250);const nb=document.querySelector('#next-era-btn');if(nb){if(nextId){nb.classList.remove('hidden');nb.textContent=`다음 대단원 ‘${ERAS[nextId].name}’ 탐험하기 →`;nb.onclick=()=>openEra(nextId)}else nb.classList.add('hidden')}show('stage-result')}
+function showPromotion(before,after){const c=getCharacter();document.querySelector('#promotion-title').textContent=`${ranks()[before].name} → ${ranks()[after].name}`;document.querySelector('#promotion-before').src=avatarPath(c.id,before);document.querySelector('#promotion-after').src=avatarPath(c.id,after);document.querySelector('#promotion-before-name').textContent=ranks()[before].name;document.querySelector('#promotion-after-name').textContent=ranks()[after].name;document.querySelector('#promotion-modal').classList.remove('hidden')}
+function allCards(){return stages().flatMap(s=>s.questions.map(q=>q.card))}
+function renderCollection(){if(!activeEraId)return show('eras');document.querySelector('#collection-title').textContent=`${era().name} · 역사 도감`;document.querySelector('#collection-grid').innerHTML=allCards().map(card=>{const got=state.cards.includes(card.name);return `<article class="history-card ${got?'':'locked'}"><div class="card-icon">${got?card.icon:'❓'}</div><h3>${got?card.name:'미발견 카드'}</h3><p>${got?card.desc:'문제를 해결하면 카드가 열립니다.'}</p></article>`}).join('')}
+function renderWrong(){if(!activeEraId)return show('eras');const list=document.querySelector('#wrong-list');list.innerHTML=state.wrong.length?state.wrong.map(w=>`<article class="wrong-item"><b>📜 ${w.stage}</b><p>${w.q}</p><p><strong>정답:</strong> ${w.answer}</p><p>${w.explain}</p></article>`).join(''):'<div class="empty-state">🎉 오답 두루마리가 비어 있습니다.</div>'}
+function renderWardrobe(){
+  if(!activeEraId)return show('eras');
+  state=normalizeEquipState(state);
+  const c=getCharacter(),idx=getRankIndex();
+  document.querySelector('#wardrobe-avatar').innerHTML=avatarBox(avatarPath(c.id,idx),'wardrobe-avatar');
+  document.querySelector('#wardrobe-title').innerHTML=`${era().name} · 꾸미기 창고 <small>(장착 6개, 대표 3개 직접 선택)</small>`;
+
+  const all=stages().map(s=>s.reward);
+  const allRewards=allRewardItems();
+
+  const slotSummary=EQUIP_SLOTS.map(slot=>{
+    const id=state.equippedSlots[slot],it=allRewards.find(x=>x.id===id),vis=isVisibleSlot(slot,state);
+    return `<div class="slot-chip ${id?'filled':''} ${vis&&it?'visible':''}">
+      <b>${SLOT_LABELS[slot]}</b>
+      <span>${it?it.name:'비어 있음'}</span>
+      <small>${it?(vis?'현재 화면에 표시 중':'장착만 된 상태'):'아이템을 선택하세요'}</small>
+      <div class="slot-chip-actions">
+        <button type="button" class="slot-action ${vis&&it?'active':''}" data-toggle-visible="${slot}" ${it?'':'disabled'}>${vis&&it?'표시중':'화면표시'}</button>
+        <button type="button" class="slot-action ghost" data-clear-slot="${slot}" ${id?'':'disabled'}>해제</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const grid=document.querySelector('#wardrobe-grid');
+  grid.innerHTML=`<div class="slot-summary">${slotSummary}</div><div class="slot-guide">장착 슬롯은 최대 6개입니다. <b>보물 등급은 모두 사고력 +50</b>, 대단원의 모든 기본 미션을 끝내 받는 <b>국보 등급은 +100</b>입니다. 사고력 보너스는 장착한 아이템만 적용되며, 화면에는 대표 아이템 3개만 직접 선택해 표시합니다.</div>`+all.map(it=>{
+    const got=state.items.includes(it.id);
+    const currentSlot=EQUIP_SLOTS.find(slot=>state.equippedSlots[slot]===it.id);
+    const buttons=EQUIP_SLOTS.map((slot,i)=>{
+      const on=state.equippedSlots[slot]===it.id;
+      return `<button type="button" class="slot-pick ${on?'active':''}" data-item="${it.id}" data-target-slot="${slot}" ${got?'':'disabled'}>${i+1}</button>`;
+    }).join('');
+    return `<article class="item-card ${got?'':'locked'} ${currentSlot?'equipped':''}">
+      ${got?itemMarkup(it,'wardrobe-item'):'<span class="locked-item">🔒</span>'}
+      ${got?`<span class="grade-badge grade-${itemGrade(it)}">${itemGradeLabel(it)} · 사고력 +${itemPower(it)}</span>`:''}
+      <b>${got?it.name:'미획득 아이템'}</b>
+      <small>${got?it.desc:'미션을 완료하면 열립니다.'}</small>
+      ${got?`<div class="slot-picker"><span>장착 슬롯</span>${buttons}</div>`:''}
+    </article>`;
+  }).join('');
+
+  document.querySelectorAll('[data-clear-slot]').forEach(b=>b.onclick=()=>{
+    const slot=b.dataset.clearSlot;
+    if(state.equippedSlots[slot]){
+      state.equippedSlots[slot]=null;
+      if(state.visibleSlots.includes(slot)){
+        state.visibleSlots=state.visibleSlots.filter(v=>v!==slot);
+        const alt=EQUIP_SLOTS.find(s=>state.equippedSlots[s] && !state.visibleSlots.includes(s));
+        if(alt && state.visibleSlots.length<3) state.visibleSlots.push(alt);
+      }
+      saveEra(); renderWardrobe(); renderMini(); toast(`${SLOT_LABELS[slot]}을 비웠습니다.`);
+    }
+  });
+
+  document.querySelectorAll('[data-toggle-visible]').forEach(b=>b.onclick=()=>{
+    const slot=b.dataset.toggleVisible;
+    toggleVisibleSlot(slot);
+    renderWardrobe();
+    renderMini();
+  });
+
+  document.querySelectorAll('.slot-pick:not(:disabled)').forEach(b=>b.onclick=()=>{
+    const id=b.dataset.item,slot=b.dataset.targetSlot;
+
+    EQUIP_SLOTS.forEach(k=>{if(state.equippedSlots[k]===id)state.equippedSlots[k]=null});
+
+    if(b.classList.contains('active')){
+      state.equippedSlots[slot]=null;
+      if(state.visibleSlots.includes(slot)) state.visibleSlots=state.visibleSlots.filter(v=>v!==slot);
+      toast(`${SLOT_LABELS[slot]}에서 아이템을 해제했습니다.`);
+    }else{
+      state.equippedSlots[slot]=id;
+      toast(`${SLOT_LABELS[slot]}에 장착했습니다.`);
+    }
+    state=normalizeEquipState(state);
+    saveEra(); renderWardrobe(); renderMini();
+  });
+}
+
+let activeBonusStageId=null;
+function ensureBonusModal(){
+  if(document.querySelector('#bonus-modal'))return;
+  const modal=document.createElement('div');
+  modal.id='bonus-modal';
+  modal.className='bonus-modal hidden';
+  modal.innerHTML=`<div class="bonus-card">
+    <button class="bonus-close" type="button" aria-label="닫기">×</button>
+    <span class="eyebrow">BONUS CHALLENGE</span>
+    <h2 id="bonus-title">추가 문제</h2>
+    <div class="bonus-reward-preview" id="bonus-reward-preview"></div>
+    <p id="bonus-question"></p>
+    <div id="bonus-options" class="bonus-options"></div>
+    <div id="bonus-feedback" class="bonus-feedback hidden"></div>
+  </div>`;
+  document.body.appendChild(modal);
+  modal.querySelector('.bonus-close').onclick=()=>modal.classList.add('hidden');
+  modal.onclick=e=>{if(e.target===modal)modal.classList.add('hidden')};
+}
+function startBonusChallenge(stageId){
+  state=normalizeEquipState(state);
+  const st=stages().find(s=>s.id===stageId);
+  const ch=BONUS_CHALLENGES[bonusKey(activeEraId,stageId)];
+  if(!st||!ch)return;
+  if(!state.completedStages.includes(stageId)&&!teacherPreview){
+    toast('기본 미션을 먼저 완료해 주세요.');
+    return;
+  }
+  activeBonusStageId=stageId;
+  ensureBonusModal();
+  const modal=document.querySelector('#bonus-modal');
+  modal.classList.remove('hidden');
+  document.querySelector('#bonus-title').textContent=`${st.title} · 추가 도전`;
+  document.querySelector('#bonus-reward-preview').innerHTML=`${itemMarkup(st.reward,'bonus-reward-art')}<div><span class="grade-badge grade-treasure">보물 등급 · 사고력 +50</span><b>${st.reward.name}</b><small>정답을 맞히면 이 아이템을 획득합니다.</small></div>`;
+  document.querySelector('#bonus-question').textContent=ch.q;
+  const opts=document.querySelector('#bonus-options');
+  opts.innerHTML=ch.opts.map((o,i)=>`<button type="button" data-bonus-answer="${i}"><b>${i+1}.</b> ${o}</button>`).join('');
+  const fb=document.querySelector('#bonus-feedback');
+  fb.className='bonus-feedback hidden';
+  fb.innerHTML='';
+  opts.querySelectorAll('button').forEach(b=>b.onclick=()=>answerBonus(Number(b.dataset.bonusAnswer)));
+}
+function answerBonus(i){
+  const stageId=activeBonusStageId,
+        st=stages().find(s=>s.id===stageId),
+        ch=BONUS_CHALLENGES[bonusKey(activeEraId,stageId)];
+  if(!st||!ch)return;
+  const fb=document.querySelector('#bonus-feedback');
+  const buttons=[...document.querySelectorAll('#bonus-options button')];
+  buttons.forEach((b,idx)=>{
+    b.disabled=true;
+    if(idx===ch.a)b.classList.add('correct');
+    if(idx===i&&i!==ch.a)b.classList.add('wrong');
+  });
+  if(i===ch.a){
+    if(!teacherPreview){
+      if(!state.items.includes(st.reward.id))state.items.push(st.reward.id);
+      if(!state.bonusCleared.includes(stageId))state.bonusCleared.push(stageId);
+      saveEra();
+    }
+    fb.className='bonus-feedback good';
+    fb.innerHTML=`<b>✅ 추가 도전 성공!</b><br>${ch.explain}<br><strong>${teacherPreview?'미리보기에서는 저장되지 않습니다.':`보물 등급 ‘${st.reward.name}’을 획득했습니다. 장착 시 역사적 사고력 +50`}</strong>`;
+    if(!teacherPreview)setTimeout(()=>{document.querySelector('#bonus-modal').classList.add('hidden');renderMap()},1200);
+  }else{
+    fb.className='bonus-feedback bad';
+    fb.innerHTML=`<b>🔎 아쉽습니다.</b><br>${ch.explain}<br>창을 닫고 다시 도전할 수 있습니다.`;
+  }
+}
+
+function resetCurrentEra(){if(confirm(`${era().name} 기록을 초기화할까요?`)){localStorage.removeItem(ERA_KEY_PREFIX+activeEraId);state=eraDefault();show('map')}}
+document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.go)));
+document.querySelector('#era-shortcut')?.addEventListener('click',()=>show('eras'));
+document.querySelector('#start-profile-btn')?.addEventListener('click',saveProfileChoice);
+document.querySelector('#cancel-character-btn')?.addEventListener('click',()=>{changingCharacter=false;selectedCharacter=profile?.character||null;show('home')});
+document.querySelector('#change-character-btn')?.addEventListener('click',beginCharacterChange);
+document.querySelector('#next-question')?.addEventListener('click',nextQuestion);
+document.querySelector('#clear-preview')?.addEventListener('click',clearPreview);
+document.querySelector('#reset-era-btn')?.addEventListener('click',resetCurrentEra);
+document.querySelector('#open-save')?.addEventListener('click',submitOpenAnswer);
+document.querySelector('#promotion-close')?.addEventListener('click',()=>document.querySelector('#promotion-modal').classList.add('hidden'));
+document.querySelector('#promotion-modal')?.addEventListener('click',e=>{if(e.target.id==='promotion-modal')e.currentTarget.classList.add('hidden')});
+document.querySelector('#teacher-preview-btn')?.addEventListener('click',()=>{teacherPreview=!teacherPreview;renderEras()});
+renderHome();renderMini();
+
+</script>
+</body>
+</html>

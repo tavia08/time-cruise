@@ -1107,6 +1107,69 @@ body:not(.student-gate) #home-actions button{pointer-events:auto!important}
   .home-profile-safe{grid-template-columns:1fr!important}
 }
 
+
+/* v28.21 꾸미기 창고 대표 아이템 바 적용 */
+.wardrobe-avatar-stage{
+  position:relative;
+  width:100%;
+  min-height:330px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.wardrobe-avatar-stage .avatar-composite{
+  width:100%;
+}
+.wardrobe-represent-strip{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:14px;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-radius:22px;
+  background:rgba(56,69,78,.42);
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 14px 28px rgba(16,34,48,.18);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.wardrobe-represent-label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:108px;
+  color:#fff;
+}
+.wardrobe-represent-label .icon{
+  width:28px;height:28px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);font-size:15px
+}
+.wardrobe-represent-label strong{display:block;font-size:13px;line-height:1.1;font-weight:950;letter-spacing:-.02em}
+.wardrobe-represent-label small{display:block;font-size:10px;opacity:.88;margin-top:3px}
+.wardrobe-represent-items{display:flex;align-items:center;gap:10px;justify-content:flex-end;flex:1;min-width:0}
+.wardrobe-represent-chip{
+  width:62px;height:62px;border-radius:50%;flex:0 0 62px;
+  background:rgba(255,248,239,.96);border:2px solid rgba(255,255,255,.85);
+  display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 18px rgba(10,23,31,.16);
+}
+.wardrobe-represent-chip img{width:78%;height:78%;object-fit:contain;display:block}
+.wardrobe-represent-empty{
+  color:rgba(255,255,255,.92);font-size:12px;font-weight:800;
+  padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18)
+}
+@media(max-width:620px){
+  .wardrobe-represent-strip{left:10px;right:10px;bottom:10px;padding:10px 12px;gap:10px}
+  .wardrobe-represent-label{min-width:92px}
+  .wardrobe-represent-label strong{font-size:12px}
+  .wardrobe-represent-chip{width:50px;height:50px;flex-basis:50px}
+}
+
 </style>
 </head>
 <body>
@@ -2275,6 +2338,22 @@ function equippedMarkup(s=state){
     return it?`<span class="avatar-item item-slot${idx+1}" title="대표 표시 아이템 ${idx+1} · ${it.name}">${itemMarkup(it)}</span>`:'';
   }).join('');
 }
+
+function representativeItemsData(s=state){
+  s=normalizeEquipState(s);
+  const all=allRewardItems();
+  return (s.visibleSlots||[]).map(slot=>{
+    const id=s.equippedSlots?.[slot];
+    return all.find(x=>x.id===id);
+  }).filter(Boolean).slice(0,3);
+}
+function representativeStripMarkup(s=state){
+  const items=representativeItemsData(s);
+  return `<div class="wardrobe-represent-strip">
+    <div class="wardrobe-represent-label"><span class="icon">🧰</span><div><strong>대표 아이템</strong><small>장착 중인 대표 표시</small></div></div>
+    <div class="wardrobe-represent-items">${items.length?items.map(it=>`<span class="wardrobe-represent-chip" title="${it.name}"><img src="${it.image}" alt="${it.name}"></span>`).join(''):`<span class="wardrobe-represent-empty">대표 아이템 없음</span>`}</div>
+  </div>`;
+}
 function avatarBox(src,cls='',showPower=true){
   const power=showPower?thinkingPowerMarkup():'';
   return `<div class="avatar-with-power ${showPower?'':'avatar-only'}">${power}<div class="avatar-composite ${cls}"><img src="${src}" alt=""><span class="equipped-layer">${equippedMarkup()}</span></div></div>`;
@@ -2502,9 +2581,12 @@ function renderWardrobe(){
     if(avatarHost){
       avatarHost.innerHTML=`
         <div class="wardrobe-avatar-safe">
-          <div class="avatar-composite wardrobe-avatar">
-            <img src="${avatarPath(c.id,rankIndex)}" alt="${c.name}">
-            <span class="equipped-layer">${overlay}</span>
+          <div class="wardrobe-avatar-stage">
+            <div class="avatar-composite wardrobe-avatar">
+              <img src="${avatarPath(c.id,rankIndex)}" alt="${c.name}">
+              <span class="equipped-layer">${overlay}</span>
+            </div>
+            ${representativeStripMarkup(state)}
           </div>
           <div class="wardrobe-avatar-info">
             <b>${c.name}</b>
